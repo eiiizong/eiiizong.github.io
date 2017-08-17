@@ -3,12 +3,13 @@
   <entry>
     <title><![CDATA[CSS3 动画的实现]]></title>
     <url>%2F2017%2F08%2F16%2FCSS3-%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[······直接进入主题······ 1 简单动画1-1 大小变化我们先来看看效果 html: CSS:transform属性值scale（x,y）定义2D缩放转换。若scale()中只有一个值（大于1，放大；小于1，缩小），则表示X轴（水平方向）和Y轴（垂直方向）放大或缩小相同的值。若只通过设置X轴的值来定义缩放转换，则改为 scaleX(), Y轴同理。 1-2 形状变化 html： CSS： transform-origin是变形原点，也就是该元素围绕着那个点变形或旋转，该属性只有在设置了transform属性的时候起作用；因为我们元素默认基点就是其中心位置，换句话说我们没有使用transform-origin改变元素基点位置的情况下，transform进行的rotate,translate,scale,skew,matrix等操作都是以元素自己中心位置进行变化的。但有时候我们需要在不同的位置对元素进行这些操作，那么我们就可以使用transform-origin来对元素进行基点位置改变，使元素基点不在是中心位置，以达到你需要的基点位置。 以下是x-axis、y-axis和z-axis、可能取的值：x-axis | y-axis| z-axis|相应的百分比(%)—|—|—|—lefe | top | |0%center (默认值）| center (默认值） | |50%right | bottom | |1000%lenght| lenght | length% | % | 对应上表中的百分比(%)可用坐标轴来理解：0点 对应 left top(0%,0%); right bottom (100%,100%)。 注意： 1、如果没有使用transform-origin改变元素基点位置的情况下，transform进行的rotate,translate,scale,skew,matrix等操作都是以元素自己中心位置进行变化的。 2、transform进行的rotate,translate,scale,skew,matrix等操作的值: X轴：正数则表示逆时针旋转，负数表示顺时针旋转 Y轴：正数则表示顺时针旋转，负数表示逆时针旋转 3、对于2D转换只有x-axis和y-axis有对应的值，3D转换才有z-axis。 1-3 旋转角度变化效果图： html: css: rotate(angle)定义2D旋转，在参数中规定角度;rotateX(angle)定义沿着X轴的3D旋转;rotateY(angle) 定义沿着Y轴的3D旋转;rotateZ(angle)定义沿着Z轴的3D旋转。rotate3d(x,y,z,angle)定义3D旋转。 注意：在3D旋转中90度及其整数倍是个特殊值。其效果是看不见。]]></content>
       <categories>
         <category>CSS</category>
       </categories>
       <tags>
-        <tag>CSS3，CSS</tag>
+        <tag>CSS3，transform</tag>
+        <tag>hover</tag>
       </tags>
   </entry>
   <entry>

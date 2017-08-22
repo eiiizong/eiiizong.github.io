@@ -576,7 +576,35 @@ alert（typeof names）； //警告框显示：object
 </tbody>
 </table>
 <p><strong>注意</strong>：n/a(或者 N/A)，是 not applicable 的缩写，意思为“不适用”。</p>
-<h2 id="4-5-Number-类型"><a href="#4-5-Number-类型" class="headerlink" title="4.5 Number 类型"></a>4.5 Number 类型</h2>
+<h2 id="4-5-Number-类型"><a href="#4-5-Number-类型" class="headerlink" title="4.5 Number 类型"></a>4.5 Number 类型</h2><p>Number 数据类型使用 IEEE754 格式来表示<strong>整数</strong>和<strong>浮点数</strong>（浮点数值在某些语言中也被称为<strong>双精度数值</strong>）。ECMA-262 定义了不同的数值字面量格式。</p>
+<p>1、<strong>十进制</strong>——最基本的数值字面量格式</p>
+<p>2、<strong>八进制</strong>——以<code>0</code>开头，然后是八进制数值序列 (0~7)</p>
+<p>3、<strong>十六进制</strong>——以<code>0x</code>开头，后跟十六进制数值序列 (0~9 及 A~F)</p>
+<p>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> intNum = <span class="number">55</span>;      <span class="comment">//整数</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">070</span>;      <span class="comment">//八进制的 56</span></div><div class="line"><span class="keyword">var</span> num2 = <span class="number">079</span>;     <span class="comment">//无效八进制，解析为 79</span></div><div class="line"><span class="keyword">var</span> num3 = <span class="number">08</span>;     <span class="comment">//无效八进制，解析为 8</span></div><div class="line"><span class="keyword">var</span> num4 = <span class="number">0xA</span>;   <span class="comment">//十六进制的 10</span></div><div class="line"><span class="keyword">var</span> num5 = <span class="number">0x1f</span>; <span class="comment">//十六进制的 31</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：在进行算术运算时，<strong>所有</strong>八进制和十六进制的数值都将被转换为十进制数值；八进制数值字面值中的数值如果超出了范围，那么前导的 <code>0</code> 将会被忽略，后面的数值将会被当作十进制数值解析，并且八进制字面量<strong>在严格模式下是无效的</strong>，会导致支持的javascript引擎抛出错误。</p>
+<h3 id="4-1-1-浮点数值"><a href="#4-1-1-浮点数值" class="headerlink" title="4.1.1 浮点数值"></a>4.1.1 浮点数值</h3><p>浮点数就是该数值中必须<strong>包含一个小数点</strong>，并且小数点后面必须至少有一位数字。<em>小数点前面可以没有整数，但是不推荐这种写法。</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> floatNum1 = <span class="number">1.2</span>;</div><div class="line"><span class="keyword">var</span> floatNum2 = <span class="number">0.2</span>;</div><div class="line"><span class="keyword">var</span> floatNum3 = <span class="number">.2</span>; <span class="comment">//有效，不推荐</span></div></pre></td></tr></table></figure></p>
+<p>因为保存浮点数值需要的内存空间是保存整数的<strong>两倍</strong>，所以ECMAScript 有机会就会把浮点数值转换为整数值。例如以下情况：</p>
+<ul>
+<li>小数点后面没有任何数字</li>
+<li>浮点数本身就是一个整数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> floatNum1 = <span class="number">1.</span>;   <span class="comment">//小数点后面没有数字——解析为 1</span></div><div class="line"><span class="keyword">var</span> floatNum3 = <span class="number">2.0</span>; <span class="comment">//整数——解析为 2</span></div></pre></td></tr></table></figure>
+<p>对于极大或者极小的数值，可以用<code>e</code>(或者<code>E</code>)表示法（即科学计数法）表示浮点数值。<code>e</code>表示法表示的数值等于<strong>e</strong>前面的数<strong>乘以</strong>10的指数幂。如下所示：</p>
+<blockquote>
+<p>var a = 7.23e5;  // 等于 723000</p>
+</blockquote>
+<p><strong>注意</strong>：浮点数的的最高精度是 <strong>17</strong> 位小数（也就是小数点后面最多只能有 17 位数字）。但是其进行算术运算时的精度远远不如整数。例如：0.1加0.2的结果不是 0.3，而是 0.30000000000000004。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0.1</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="number">0.2</span>;</div><div class="line"><span class="keyword">if</span>(a+b == <span class="number">0.3</span>)&#123;</div><div class="line">    alert(<span class="string">"0.3"</span>); <span class="comment">//测试将无法通过</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-1-2-数值范围"><a href="#4-1-2-数值范围" class="headerlink" title="4.1.2 数值范围"></a>4.1.2 数值范围</h3><p>由于<strong>内存限制</strong>，EXMAScript 不能保持世界上所有的数值。</p>
+<ul>
+<li>EXMAScript 能够表示的<strong>最小数值</strong>保存在<strong>Number.MIN_VALUE</strong> 中</li>
+<li>EXMAScript 能够表示的<strong>最大数值</strong>保存在<strong>Number.MAX_VALUE</strong> 中</li>
+</ul>
+<p>如果某次计算超出了javascript数值范围，那么这个数值将会自动转换成特殊的 <strong>Infinity</strong>值。如果为<strong>正数</strong>，则转换为<code>Infinity</code>(正无穷)；如果为<strong>负数</strong>，则转换为<code>-Infinity</code>(负无穷)。</p>
+<p><strong>注意</strong>：如果某次计算返回了正或负的<strong>Infinity</strong>值，该值将无法参与下一次的计算。</p>
+<p>可以用<code>isFinite()</code>函数检测一个数是不是位于最大和最小的数值之间，如果<strong>位于范围之间</strong>，则返回<strong>true</strong>。如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> returns = <span class="built_in">Number</span>.MAX_VALUE + <span class="built_in">Number</span>.MAX_VALUE;</div><div class="line">alert(<span class="built_in">isFinite</span>(returns));  <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：访问<strong>Number.NEGATIVE_INFINITY</strong> 和 <strong>Number.POSITIVE_INFINITY</strong>也可以得到负和正的 Infinity 的值。可以知道这两个属性中<strong>分别</strong>保存着<code>-Infinity</code>和<code>Infinity</code>。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="built_in">Number</span>.NEGATIVE_INFINITY;</div><div class="line"><span class="keyword">var</span> b = <span class="built_in">Number</span>.POSITIVE_INFINITY;</div><div class="line">alert(<span class="built_in">isFinite</span>(a));           <span class="comment">//返回 false</span></div><div class="line">alert(!<span class="built_in">isFinite</span>(b));          <span class="comment">//返回 true</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-3-3-NaN"><a href="#4-3-3-NaN" class="headerlink" title="4.3.3 NaN"></a>4.3.3 NaN</h3><p>NaN,即<strong>非数值</strong>(Not a Number) 是一个特殊的数值。</p>
+
           
         
       

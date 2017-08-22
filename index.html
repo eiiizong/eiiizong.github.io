@@ -387,28 +387,24 @@
 <li>2、其他字符可以是字母，下划线，美元符号或者数字</li>
 </ul>
 <p><strong>注意</strong>：推荐使用驼峰大小写格式   <strong>例如</strong>: myCar</p>
-<h2 id="1-3-注释"><a href="#1-3-注释" class="headerlink" title="1.3 注释"></a>1.3 注释</h2><blockquote>
-<p>// <strong>单行注释</strong></p>
-<p>/<strong>/  </strong>多行注释**</p>
-</blockquote>
+<h2 id="1-3-注释"><a href="#1-3-注释" class="headerlink" title="1.3 注释"></a>1.3 注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// **单行注释**</div><div class="line">/* */  多行注释</div></pre></td></tr></table></figure>
 <h2 id="1-4-严格模式"><a href="#1-4-严格模式" class="headerlink" title="1.4 严格模式"></a>1.4 严格模式</h2><p>ECMAScript 5 引入了<strong>严格模式</strong>(strict mode)的概念。严格模式是为JavaScript定义了一种不同的解析与执行模型。</p>
 <p>在严格模式下，ECMAScript 3 中的一些不确定的行为将得到处理，而且多某些不安全的操作也会抛出错误。</p>
 <p>如果要在整个脚本中执行严格模式，在脚本顶部加上以下代码：</p>
 <blockquote>
 <p>“use strict” ;</p>
 </blockquote>
-<p>如果要指定某个函数执行严格模式，在函数内部顶部加上”use strict”代码。</p>
+<p>如果要指定某个函数执行严格模式，在函数内部顶部加上<code>use strict;</code>代码。</p>
 <p><strong>例如</strong>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"><span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>“use strict”</strong> 这段代码看起来想字符串，而且也没有赋值给任何变量，但它其实是一个<strong>编译指示</strong>，用于告诉支持的JavaScript引擎切换到严格模式。这是为不破坏ECMAScript 3语法而特意选定的语法。<br>当然，在严格模式下，JavaScript的执行结果会有很大的不同。</p>
+<p><code>use strict;</code> 这段代码看起来想字符串，而且也没有赋值给任何变量，但它其实是一个<strong>编译指示</strong>，用于告诉支持的JavaScript引擎切换到严格模式。这是为不破坏ECMAScript 3语法而特意选定的语法。<br>当然，在严格模式下，JavaScript的执行结果会有很大的不同。</p>
 <h2 id="1-5-语句"><a href="#1-5-语句" class="headerlink" title="1.5 语句"></a>1.5 语句</h2><p>ECMAScript中的语句以一个<strong>分号</strong>（;）结束；如果省略分号，则由解析器确定语句的结尾。虽然有效，但是<strong>不推荐省略分号的写法</strong>。</p>
 <p>我们可以采用C风格的语法把多条语句组合到一个代码块中。即代码块以左花括号( { )开始，以右花括号( } )结尾:</p>
 <p><strong>例如</strong>：</p>
-<blockquote>
-<p>if(test) {</p>
-<p>test = ture;</p>
-<p>alert(test);</p>
-<p>}  </p>
-</blockquote>
+<pre><code class="javascript"><span class="keyword">if</span>(test) {
+test = ture;
+alert(test);
+}
+</code></pre>
 <p><strong>注意</strong>：虽然条件控制语句（例如if语句）只在执行多条语句的情况下要求使用代码块，但最佳实践是<strong>始终</strong>在控制语句中使用代码块——即使代码块中只有一条语句。这样能降低修改代码时出错的几率。</p>
 <h1 id="2-关键字和保留字"><a href="#2-关键字和保留字" class="headerlink" title="2 关键字和保留字"></a>2 关键字和保留字</h1><p>ECMA-262描述了一组具有特定用途的<strong>关键字</strong>，这些关键字可以用于表示控制语句的开始和结束。或者用于执行特定的操作符等。</p>
 <p><strong>注意</strong>：关键字也是语言保留的，不能用作标识符。</p>
@@ -498,10 +494,10 @@
 <li>static</li>
 <li>yield *</li>
 </ul>
-<p><strong>注意</strong>：在实现ECMAScript 3的JavaScript引擎中使用<strong>关键字</strong>作标识符，会导致”Identifier Expected(缺少标识符)”的错误。而使用<strong>保留字</strong>作标识符可能会也可能不会导致相同的错误，具体取决于特定的引擎。</p>
+<p><strong>注意</strong>：在实现ECMAScript 3的JavaScript引擎中使用<strong>关键字</strong>作标识符，会导致<strong>“Identifier Expected(缺少标识符)”</strong>的错误。而使用<strong>保留字</strong>作标识符可能会也可能不会导致相同的错误，具体取决于特定的引擎。</p>
 <p>一般来说，最好都不要使用关键字和保留字作为标识符和<strong>属性名</strong>，以便于与将来的ECMAScript版本兼容。</p>
 <p>除了上面列出的保留字和关键字，ECMA-262第5版对<strong>evel</strong>和<strong>arguments</strong>还施加了限制。在严格模式下这两个名字不能作为标识符和属性名，否则会抛出错误。</p>
-<h1 id="3-变量"><a href="#3-变量" class="headerlink" title="3 变量"></a>3 变量</h1><p>ECMAScript 的变量是松散型的。所谓松散型就是可以用来保存<strong>任意类型</strong>的数据，即每个变量仅仅是一个用于保存值得<strong>站位符</strong>而已。定义变量是用<strong>var</strong>关键字。</p>
+<h1 id="3-变量"><a href="#3-变量" class="headerlink" title="3 变量"></a>3 变量</h1><p>ECMAScript 的变量是松散型的。所谓松散型就是可以用来保存<strong>任意类型</strong>的数据，即每个变量仅仅是一个用于保存值得<strong>站位符</strong>而已。定义变量是用<code>var</code>关键字。</p>
 <blockquote>
 <p>var message；</p>
 </blockquote>
@@ -520,8 +516,8 @@
 <blockquote>
 <p>var mane = “zxm”,</p>
 <p>age = 29;</p>
-<h1 id="4-数据类型"><a href="#4-数据类型" class="headerlink" title="4 数据类型"></a>4 数据类型</h1></blockquote>
-<p>ECMAScript 中有5种简单数据类型：<strong>Undefined</strong>、<strong>Null</strong>、<strong>Boolean</strong>、<strong>Number</strong> 和 <strong>String</strong>。还有一种复杂类型—— <strong>Object</strong>  , <strong>Object</strong> 本质上是由一组<strong>无序的名值对组成的</strong>。</p>
+</blockquote>
+<h1 id="4-数据类型"><a href="#4-数据类型" class="headerlink" title="4 数据类型"></a>4 数据类型</h1><p>ECMAScript 中有5种简单数据类型：<strong>Undefined</strong>、<strong>Null</strong>、<strong>Boolean</strong>、<strong>Number</strong> 和 <strong>String</strong>。还有一种复杂类型—— <strong>Object</strong>  , <strong>Object</strong> 本质上是由一组<strong>无序的名值对组成的</strong>。</p>
 <h2 id="4-1-typeof-操作符"><a href="#4-1-typeof-操作符" class="headerlink" title="4.1 typeof 操作符"></a>4.1 typeof 操作符</h2><p>鉴于 ECMAScript 是松散类型的，因此需要一种手段来检测给定的变量的数据类型—— <strong>typeof</strong> 就负责提供这方面信息的操作符。对一个值使用 typeof 操作符可能返回下列某个字符串：</p>
 <blockquote>
 <p>“undefined”——————如果这个值<strong>未定义</strong></p>
@@ -551,6 +547,7 @@ alert（name == undefined）； //警告框显示：true
 </code></pre><p>这个例子使用 undefined 值初始化了变量 name 。但我们没有必要这么做，因为未经初始化的变量会默认取得 undefined 值。<strong>但是</strong>，包含 undefined 值的变量与没有定义的值还是不一样的。</p>
 <pre><code>var name；//这个变量声明过后，默认取得 undefined 值
 //下面这个变量没有声明
+// var age
 alert（name）； //警告框显示：undefined
 alert（age）； //产生错误
 </code></pre><p>运行以上代码，在第一个警告框弹出 undefined 后，第二个警告框——由于传递给alert（）函数的是未定义的变量 age —— 导致一个错误，从而终止代码运行。</p>
@@ -572,7 +569,33 @@ alert（typeof names）； //警告框显示：object
 <pre><code>var message = &quot;Hello World!&quot;;
 var messageAsBoolean = Boolean(message);
 alert(messageAsBoolean);              //警告框显示：true
-</code></pre><p>各种数据类型及其对应的转换规则：<br>| 项目        | 价格   |  数量  |<br>| ——–   | —–:  | :—-:  |<br>| 计算机     | \$1600 |   5     |<br>| 手机        |   \$12   |   12   |<br>| 管线        |    \$1    |  234  |</p>
+</code></pre><p>各种数据类型及其对应的转换规则：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td style="text-align:right">\$1600</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td style="text-align:right">\$12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td style="text-align:right">\$1</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
 
           
         

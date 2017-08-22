@@ -384,14 +384,12 @@
 <h2 id="1-2-标识符"><a href="#1-2-标识符" class="headerlink" title="1.2 标识符"></a>1.2 标识符</h2><p>所谓标识符就是指变量，函数，属性的名字，或者函数的参数。<br>标识符按照以下规则组合：</p>
 <ul>
 <li>1、第一个字符必须是字母，下划线（_）或一个美元符号（$）</li>
-<li>2、其他字符可以是字母，下划线，美元符号或者数字<blockquote>
-<p>注意：推荐使用驼峰大小写格式   例如: myCar</p>
-</blockquote>
-</li>
+<li>2、其他字符可以是字母，下划线，美元符号或者数字</li>
 </ul>
+<p><strong>注意</strong>：推荐使用驼峰大小写格式   <strong>例如</strong>: myCar</p>
 <h2 id="1-3-注释"><a href="#1-3-注释" class="headerlink" title="1.3 注释"></a>1.3 注释</h2><blockquote>
-<p>// 单行注释</p>
-<p>/**/ 多行注释</p>
+<p>// <strong>单行注释</strong></p>
+<p>/<strong>/  </strong>多行注释**</p>
 </blockquote>
 <h2 id="1-4-严格模式"><a href="#1-4-严格模式" class="headerlink" title="1.4 严格模式"></a>1.4 严格模式</h2><p>ECMAScript 5 引入了<strong>严格模式</strong>(strict mode)的概念。严格模式是为JavaScript定义了一种不同的解析与执行模型。</p>
 <p>在严格模式下，ECMAScript 3 中的一些不确定的行为将得到处理，而且多某些不安全的操作也会抛出错误。</p>
@@ -568,6 +566,23 @@ alert（age）； //产生错误
 </code></pre><p>运行以上代码，在第一个警告框弹出 undefined 后，第二个警告框——由于传递给alert（）函数的是未定义的变量 age —— 导致一个错误，从而终止代码运行。</p>
 <p><strong>注意</strong>：定义未声明的变量<strong>只能</strong>执行一项操作，即使用 typeof 操作符检测其数据类型</p>
 <p><strong>解释</strong>：对于<strong>未初始化</strong>和<strong>未声明</strong>的变量进行 typeof 操作符都返回了 undefined 值。这个结果有其逻辑上的合理性。因为虽然这两种变量从技术角度看有<strong>本质区别</strong>，但实际上无论对哪种变量都不可能执行真正的操作。</p>
+<p>基于以上，如果我们显示地初始化变量，那么当我们使用操作符 typeof 返回“undefined”值的时候，我们就知道被检测的变量是还没有被声明，而不是尚未初始化。</p>
+<h2 id="4-3-Null-类型"><a href="#4-3-Null-类型" class="headerlink" title="4.3 Null 类型"></a>4.3 Null 类型</h2><p>Null 类型是第二个只有一个值的数据类型（第一个是<strong>undefined</strong>），这个特殊值是 <strong>null</strong>。</p>
+<p>从逻辑角度看， <strong>null</strong> 表示一个 <strong>空对象指针</strong>，这也是我们使用 typeof 操作符检测 null 值时返回“<strong>object</strong>”的原因。</p>
+<pre><code>var names = null；
+alert（typeof names）； //警告框显示：object
+</code></pre><p><strong>注意</strong>：上面的例子中，如果我们将变量名该为 <strong>name</strong> ,在谷歌浏览器上运行，那么警告框将会显示“ <strong>string</strong>”，而不是“<strong>object</strong>”，因为类似谷歌内核的浏览器将 <strong>name</strong> 视为<strong>关键字</strong>。</p>
+<p>如果我们定义变量准备用来保存<strong>对象</strong>，那么我们最好将变量初始化为 <strong>null</strong> 而不是其他值。这样一来，只有直接检测 null 值就知道相应的变量是否已经保存了一个对象的引用。</p>
+<p><strong>注意</strong>：实际上，undefined 值是<strong>派生自</strong> null 值的。因此 ECMA-262 规定对他们进行相等性测试，返回 true。</p>
+<pre><code>alert（null == undefined）； //返回 true
+</code></pre><p>上面这里，位于 null 和 undefined 之间的相等操作符（==）总是返回 true ，不过<strong>要注意的是</strong>：这个操作符出于比较的目的会转换其操作数。</p>
+<p>尽管 null 和 undefined 有这样的关系，但它们的<strong>用途完全不同</strong>。就像前面所讲的，无论什么情况下，都没有必要把一个变量的值初始化为<strong>undefined</strong>，但作为一个对象变量，但还没有真正保存对象，将其初始化为 <strong>null</strong> 是有<strong>必要的</strong>。这样做不仅可以体现 null 作为空对象指针的惯例，而且也有助于进一步区分 null 和 undefined。</p>
+<h2 id="4-4-Boolean-类型"><a href="#4-4-Boolean-类型" class="headerlink" title="4.4 Boolean 类型"></a>4.4 Boolean 类型</h2><p>Boolean 类型只有两个字面值：<strong>true</strong> 和 <strong>false</strong>。这两个值与数字值不是一回事，因此 true 不一定等于1，false 不一定等于0。</p>
+<p>虽然Boolean 类型只有两个字面值， 但 ECMAScript 中所有类型的值都有与这两个Boolean 值等价的值。要想将一个值转换为其对应的Boolean值，可以调用转型函数<strong>Boolean()</strong>,如下所示：</p>
+<pre><code>var message = &quot;Hello World!&quot;;
+var messageAsBoolean = Boolean(message);
+alert(messageAsBoolean);              //警告框显示：true
+</code></pre><p>各种数据类型及其对应的转换规则：<br>|数据类型 | 转换为 true 的值| 转换为 false 的值|<br>|———|:—————:|——————|<br>|Boolean  | true            | false            |<br>|string   | 任何非空字符串  | “” (空字符串)    |</p>
 
           
         

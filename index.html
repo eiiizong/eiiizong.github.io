@@ -654,8 +654,8 @@ alert（typeof names）； //警告框显示：object
 <li><code>parseFloat( )</code>函数只解析<strong>十进制值</strong>，所以没有第二个参数</li>
 <li>如果字符串中是一个可解析的整数（没有小数点，或者小数点后全为0），<code>parseFloat( )</code>函数会返回<strong>整数</strong></li>
 </ul>
-<h3 id="4-6-String-类型"><a href="#4-6-String-类型" class="headerlink" title="4.6 String 类型"></a>4.6 String 类型</h3><p><strong>String</strong> 类型用于表示由零或多个16位 Unicode 字符组成的字符序列，即<strong>字符串</strong>。字符串可以由双引号(“)和单引号(‘)表示。不过以双引号开头的字符串必须以双引号结束，单引号同理。</p>
-<h4 id="4-6-1-字符字面量"><a href="#4-6-1-字符字面量" class="headerlink" title="4.6.1 字符字面量"></a>4.6.1 字符字面量</h4><p><strong>String</strong> 类型包含了一些特殊的字符字面量，也叫<strong>转义序列</strong>，用于表示非打印字符。这些字面量如下表所示：</p>
+<h2 id="4-6-String-类型"><a href="#4-6-String-类型" class="headerlink" title="4.6 String 类型"></a>4.6 String 类型</h2><p><strong>String</strong> 类型用于表示由零或多个16位 Unicode 字符组成的字符序列，即<strong>字符串</strong>。字符串可以由双引号(“)和单引号(‘)表示。不过以双引号开头的字符串必须以双引号结束，单引号同理。</p>
+<h3 id="4-6-1-字符字面量"><a href="#4-6-1-字符字面量" class="headerlink" title="4.6.1 字符字面量"></a>4.6.1 字符字面量</h3><p><strong>String</strong> 类型包含了一些特殊的字符字面量，也叫<strong>转义序列</strong>，用于表示非打印字符。这些字面量如下表所示：</p>
 <table>
 <thead>
 <tr>
@@ -708,7 +708,7 @@ alert（typeof names）； //警告框显示：object
 </table>
 <p>这些字符字面量可以出现在字符串中的任意位置，而且也将被作为<strong>一个字符</strong>来解析。例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> texts = <span class="string">"This is the letter sigma: \u03a3."</span>;</div><div class="line">alert(texts.length);  <span class="comment">//警告框显示：28 (20个字母，5个空格，1个：，1个.和1个\u03a3)</span></div></pre></td></tr></table></figure>
-<h4 id="4-6-2-字符串的特点"><a href="#4-6-2-字符串的特点" class="headerlink" title="4.6.2 字符串的特点"></a>4.6.2 字符串的特点</h4><p>ECMAScript 中的字符串是不可变的，也就是说，字符串一旦创建，它们的值就不能改变。如果要改变某个变量保存的字符串，首先销毁原来的字符串，然后在用另一个包含新值的字符串填充该变量。例如：</p>
+<h3 id="4-6-2-字符串的特点"><a href="#4-6-2-字符串的特点" class="headerlink" title="4.6.2 字符串的特点"></a>4.6.2 字符串的特点</h3><p>ECMAScript 中的字符串是不可变的，也就是说，字符串一旦创建，它们的值就不能改变。如果要改变某个变量保存的字符串，首先销毁原来的字符串，然后在用另一个包含新值的字符串填充该变量。例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> texts = <span class="string">"Java"</span>;</div><div class="line">texts = texts + <span class="string">"Script"</span>;</div><div class="line">alert(texts);  <span class="comment">//警告框显示：JavaScript</span></div></pre></td></tr></table></figure>
 <p><strong>后台</strong>实现上例的操作过程如下：</p>
 <ul>
@@ -727,7 +727,7 @@ alert（typeof names）； //警告框显示：object
 </ul>
 <p>例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num1 = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> num2 = <span class="literal">true</span>;</div><div class="line"><span class="keyword">var</span> num3 = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> num4;</div><div class="line">alert(<span class="built_in">String</span>(num1));           <span class="comment">//警告框显示：10 </span></div><div class="line">alert(<span class="built_in">String</span>(num2));           <span class="comment">//警告框显示：true</span></div><div class="line">alert(<span class="built_in">String</span>(num3));           <span class="comment">//警告框显示：null</span></div><div class="line">alert(<span class="built_in">String</span>(num4));           <span class="comment">//警告框显示：undefined</span></div></pre></td></tr></table></figure>
-<h3 id="4-7-Object-类型"><a href="#4-7-Object-类型" class="headerlink" title="4.7 Object 类型"></a>4.7 Object 类型</h3><p>ECMAScript 中的对象其实就是一组<strong>数据和功能的集合</strong>。对象可以通过执行<code>new</code> 操作符，后跟要创建的对象类型的<strong>名称</strong>来创建。而创建 Object 类型的实例并为其添加属性和方法，就可以创建自定义对象，如下：</p>
+<h2 id="4-7-Object-类型"><a href="#4-7-Object-类型" class="headerlink" title="4.7 Object 类型"></a>4.7 Object 类型</h2><p>ECMAScript 中的对象其实就是一组<strong>数据和功能的集合</strong>。对象可以通过执行<code>new</code> 操作符，后跟要创建的对象类型的<strong>名称</strong>来创建。而创建 Object 类型的实例并为其添加属性和方法，就可以创建自定义对象，如下：</p>
 <pre><code>var cars = new Object( );
 </code></pre><p>在ECMAScript 中，如果不给构造函数传递参数，则可以省略后面那对圆括号（<strong>不推荐</strong>这种做法）。</p>
 <pre><code>var cars = new Object;  //有效，但不推荐

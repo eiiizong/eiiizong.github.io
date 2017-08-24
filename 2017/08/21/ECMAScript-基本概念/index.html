@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Eiiizong">
 <meta property="og:description" content="1 语法1.1 区分大小写  ECMAScript中的一切（包括 变量 ，函数名 ，操作符 ）都区分大小写。即意味着test与Test、tEst分别表示不同的变量。 1.2 标识符所谓标识符就是指变量，函数，属性的名字，或者函数的参数。标识符按照以下规则组合：  1、第一个字符必须是字母，下划线（_）或一个美元符号（$） 2、其他字符可以是字母，下划线，美元符号或者数字  注意：推荐使用驼峰大小写">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-23T14:21:47.430Z">
+<meta property="og:updated_time" content="2017-08-24T09:06:34.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript 基本概念">
 <meta name="twitter:description" content="1 语法1.1 区分大小写  ECMAScript中的一切（包括 变量 ，函数名 ，操作符 ）都区分大小写。即意味着test与Test、tEst分别表示不同的变量。 1.2 标识符所谓标识符就是指变量，函数，属性的名字，或者函数的参数。标识符按照以下规则组合：  1、第一个字符必须是字母，下划线（_）或一个美元符号（$） 2、其他字符可以是字母，下划线，美元符号或者数字  注意：推荐使用驼峰大小写">
@@ -764,7 +764,186 @@ alert（typeof names）； //警告框显示：object
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"01"</span>;</div><div class="line"><span class="keyword">var</span> s2 = <span class="string">"z"</span>;</div><div class="line"><span class="keyword">var</span> s3 = <span class="string">"1.1"</span>;</div><div class="line"><span class="keyword">var</span> s4 = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> s5 = <span class="number">1.1</span>;</div><div class="line"><span class="keyword">var</span> s6 = &#123;</div><div class="line">    valueOf: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">s1 = +s1;       <span class="comment">// 值变成数值 1</span></div><div class="line">s2 = +s2;       <span class="comment">// 值变成 NaN</span></div><div class="line">s3 = +s3;       <span class="comment">// 值变成数值 1.1</span></div><div class="line">s4 = +s4;       <span class="comment">// 值变成数值 0</span></div><div class="line">s5 = +s5;       <span class="comment">// 值未变，仍是 1.1</span></div><div class="line">s6 = +s6;       <span class="comment">// 值变成数值 -1</span></div></pre></td></tr></table></figure>
 <p>一元减操作符以一个减号 （<code>-</code>） 表示，用来表示<strong>负数</strong>。例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"01"</span>;</div><div class="line"><span class="keyword">var</span> s2 = <span class="string">"z"</span>;</div><div class="line"><span class="keyword">var</span> s3 = <span class="string">"1.1"</span>;</div><div class="line"><span class="keyword">var</span> s4 = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> s5 = <span class="number">1.1</span>;</div><div class="line"><span class="keyword">var</span> s6 = &#123;</div><div class="line">    valueOf: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">s1 = -s1;       <span class="comment">// 值变成数值 -1</span></div><div class="line">s2 = -s2;       <span class="comment">// 值变成 NaN</span></div><div class="line">s3 = -s3;       <span class="comment">// 值变成数值 -1.1</span></div><div class="line">s4 = -s4;       <span class="comment">// 值变成数值 0</span></div><div class="line">s5 = -s5;       <span class="comment">// 变成了 -1.1</span></div><div class="line">s6 = -s6;       <span class="comment">// 值变成数值 1</span></div></pre></td></tr></table></figure>
-<h2 id="5-2-位操作符"><a href="#5-2-位操作符" class="headerlink" title="5.2 位操作符"></a>5.2 位操作符</h2>
+<h2 id="5-2-位操作符"><a href="#5-2-位操作符" class="headerlink" title="5.2 位操作符"></a>5.2 位操作符</h2><p>位操作符用于在<strong>最基本</strong>的层次上，即<strong>按内存中表示数值的位</strong>来操作数值。在 ECMAScript 中所有的<strong>数值</strong>都以 IEEE-754 <strong>64位</strong>格式存储。但位操作符并不直接操作 64 位的值，而是先将 64 位的值转换为 32 位的值，然后在进行操作，最后将结果换回 64 位的值。</p>
+<p>对于<strong>有符号</strong>的整数。32位中的前31位表示整数的值。第 32 位（从即左向右数的第一位）用于表示数值的符号：即 <code>0</code> 表示<strong>正数</strong>，<code>1</code> 表示<strong>负数</strong>。这个表示符号的位，叫做<strong>符号位</strong>。</p>
+<p>正数以<strong>纯二进制</strong>格式存储，31位中每一位都表示<strong>2的幂</strong>。<strong>从右到左</strong>依次为2的 0、1、2、3···次幂。没有用到的位以 0 填充。例如：数值 18 的二进制表示为：<code>00000000000000000000000000010010</code>，当然可以简写为<code>10010</code>。</p>
+<p>负数同样二进制码存储，但使用的格式是<strong>二进制补码</strong>。通过以下 3 步得到一个数值的补码：</p>
+<ul>
+<li>首先求这个数值的<strong>绝对值的二进制码</strong></li>
+<li>求二进制的<strong>反码</strong>，即<code>0</code>换成<code>1</code>，,<code>1</code>换成<code>0</code></li>
+<li>最后在得到的二进制反码加 <strong>1</strong></li>
+</ul>
+<p>例如：以 <strong>-18</strong> 为例。</p>
+<ul>
+<li>首先通过绝对值求得 18，在计算 18 的二进制码。即得： <code>00000000000000000000000000010010</code></li>
+<li>第二步，求其反码，即将<strong>0</strong>和<strong>1</strong>互换。即得： <code>11111111111111111111111111101101</code></li>
+<li>最后二进制反码加1，即得：<br><code>11111111111111111111111111101110</code></li>
+</ul>
+<p>这样我们就得到了 -18 的二进制码：<code>11111111111111111111111111101110</code>。要注意的是，<strong>在处理有符号的整数时，是不能访问 31 位的</strong>。</p>
+<p> ECMAScript 会尽力想我们隐藏所有这些信息。例如我们在以一个二进制字符串的形式输出一个负数时，我们看到的只是这个负数绝对值的二进制码前面加了一个<strong>负号</strong>。例如：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">-23</span>;</div><div class="line">alert(a.toString(<span class="number">2</span>)); <span class="comment">//警告框显示：-10111</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>: 默认情况下，ECMAScript 中<strong>所有整数</strong>都是<strong>有符号整数</strong>。不过，也存在<strong>无符号整数</strong>。对于无符号整数来说，第 32 位不再表示符号，<strong>因为无符号整数只能是正数</strong>。而且无符号整数更大，因为多出了一位不再表示符号，可以用来表示数值。</p>
+<p>ECMAScript 中当对<strong>数值</strong>应用为操作符时，后台会发生如下转换过程：</p>
+<ul>
+<li>64 位的数值被转换为 32 位数值</li>
+<li>然后，执行位操作</li>
+<li>最后，将 32 位数值换回 64 位数值</li>
+</ul>
+<p>这样表面看起来就好像是在操作 32 位数值，但这个转换过程也导致了一个严重的副效应，即在对特殊的 <strong>NaN</strong> 和 <strong>Infinity</strong> 值应用位操作时，这两个值会被当成 <strong>0</strong> 来处理。如果对<strong>非数值</strong>用于位操作符，会首先使用 <code>Number()</code> 函数将该值转换为一个数值（自动完成），然后在进行位操作。得到的结果将是一个数值。</p>
+<h3 id="5-2-1-按位非-NOT"><a href="#5-2-1-按位非-NOT" class="headerlink" title="5.2.1 按位非(NOT)"></a>5.2.1 按位非(NOT)</h3><p>按位<strong>非</strong>操作符以一个波浪线<code>(~)</code>表示。执行的结果就是返回操作数的<strong>反码</strong>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">-23</span>;</div><div class="line"><span class="keyword">var</span> b = ~a;</div><div class="line">alert(b); <span class="comment">//警告框显示：22</span></div></pre></td></tr></table></figure>
+<p> 由上例可知按位操作符的本质：<strong>操作数的负值减 1</strong>。</p>
+<h3 id="5-2-1-按位与-AND"><a href="#5-2-1-按位与-AND" class="headerlink" title="5.2.1 按位与(AND)"></a>5.2.1 按位与(AND)</h3><p>按位<strong>与</strong>操作符以一个和号字符<code>(&amp;)</code>表示，它有两个操作数。本质上将就是将两个操作数的每一位对齐，然后对相同位置上的两个数进行AND操作（<strong>即可理解为两者相乘</strong>）。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">25</span>;    <span class="comment">//二进制码:11001</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">3</span>;     <span class="comment">//二进制码:00011</span></div><div class="line"><span class="keyword">var</span> c = a&amp;b;</div><div class="line">alert(c); <span class="comment">//警告框显示：1 (二进制码：00001)</span></div></pre></td></tr></table></figure>
+<h3 id="5-2-3-按位或（OR）"><a href="#5-2-3-按位或（OR）" class="headerlink" title="5.2.3 按位或（OR）"></a>5.2.3 按位或（OR）</h3><p>按位<strong>或</strong>操作符以一个竖线符号<code>(|)</code>表示，它也有两个操作数。对相同位置上的数进行OR操作（<strong>即可理解为两者相加，最终数2也是1</strong>）。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">25</span>;    <span class="comment">//二进制码:11001</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">3</span>;     <span class="comment">//二进制码:00011</span></div><div class="line"><span class="keyword">var</span> c = a|b;</div><div class="line">alert(c); <span class="comment">//警告框显示：27 (二进制码：11011)</span></div></pre></td></tr></table></figure>
+<h3 id="5-2-4-按位异或（XOR）"><a href="#5-2-4-按位异或（XOR）" class="headerlink" title="5.2.4 按位异或（XOR）"></a>5.2.4 按位异或（XOR）</h3><p>按位<strong>异或</strong>操作符以一个插入符号<code>(^)</code>表示，它也有两个操作数。其真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第一个数值的位</th>
+<th style="text-align:center">第二个数值的位</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>本质：这个操作在两个数值对应位上<strong>只有一个1</strong>时才返回 <strong>1</strong> ，其他情况都为 <strong>0</strong> 。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">25</span>;    <span class="comment">//二进制码:11001</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">3</span>;     <span class="comment">//二进制码:00011</span></div><div class="line"><span class="keyword">var</span> c = a^b;</div><div class="line">alert(c); <span class="comment">//警告框显示：26 (二进制码：11010)</span></div></pre></td></tr></table></figure>
+<h3 id="5-2-5-左移"><a href="#5-2-5-左移" class="headerlink" title="5.2.5 左移"></a>5.2.5 左移</h3><p><strong>左移</strong>操作符由两个小于号<code>(&lt;&lt;)</code>表示。这个操作符会将数值的<strong>所有位</strong>向左移动<strong>指定</strong>的位数。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;        <span class="comment">//二进制码:00000010</span></div><div class="line"><span class="keyword">var</span> c = a &lt;&lt; <span class="number">5</span>;   <span class="comment">//二进制码:01000000</span></div><div class="line">alert(c);         <span class="comment">//警告框显示：64</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：在向左移动后，原数值的<strong>右侧</strong>多出了 5 个空位。此时以 0 填充。且左移不会影响操作符的符号位。</p>
+<h3 id="5-2-6-有符号的右移"><a href="#5-2-6-有符号的右移" class="headerlink" title="5.2.6 有符号的右移"></a>5.2.6 有符号的右移</h3><p><strong>有符号的右移</strong>操作符由两个大于号<code>(&gt;&gt;)</code>表示。这个操作符会将数值向右移动<strong>指定</strong>的位数，但保留符号位（即从左到右的第一个数不移动）。有符号的右移与左移恰恰相反例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">64</span>;        <span class="comment">//二进制码:01000000</span></div><div class="line"><span class="keyword">var</span> c = a &gt;&gt; <span class="number">5</span>;    <span class="comment">//二进制码:00000010</span></div><div class="line">alert(c);          <span class="comment">//警告框显示：2</span></div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：在有符号右移的移动过程中，原数值的<strong>左侧</strong>多出了 5 个空位。此时以<strong>符号位的值</strong>来填充。</p>
+<h3 id="5-2-7-无符号的右移"><a href="#5-2-7-无符号的右移" class="headerlink" title="5.2.7 无符号的右移"></a>5.2.7 无符号的右移</h3><p><strong>无符号的右移</strong>操作符由<strong>3</strong>个大于号<code>(&gt;&gt;&gt;)</code>表示。这个操作符会将数值的<strong>所有32位</strong>向右移动<strong>指定</strong>的位数，包括符号位（即从左到右的第一个数也要移动）。</p>
+<p>对于<strong>正数</strong>来说，无符号的右移与有符号的右移相同。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">64</span>;        <span class="comment">//二进制码:01000000</span></div><div class="line"><span class="keyword">var</span> c = a &gt;&gt;&gt; <span class="number">5</span>;   <span class="comment">//二进制码:00000010</span></div><div class="line">alert(c);          <span class="comment">//警告框显示：2</span></div></pre></td></tr></table></figure>
+<p>对于<strong>负数</strong>来说，就不一样了。无符号右移是以<strong>0</strong>来填充空位，而有符号右移时以<strong>符号位的值</strong>来填充空位。所有对于<strong>正数</strong>的无符号右移和右符号右移<strong>结果相同</strong>。负数就不一样了：无符号右移会把<strong>负数的二进制码</strong>当成<strong>正数的二进制码</strong>，就会导致无符号右移后的结果非常大。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">-64</span>;        <span class="comment">//二进制码:11111111111111111111111111000000</span></div><div class="line"><span class="keyword">var</span> c = a &gt;&gt;&gt; <span class="number">5</span>;    <span class="comment">//二进制码:00000111111111111111111111111110</span></div><div class="line">alert(c);          <span class="comment">//警告框显示：134217726</span></div></pre></td></tr></table></figure>
+<h2 id="5-3-布尔操作符"><a href="#5-3-布尔操作符" class="headerlink" title="5.3 布尔操作符"></a>5.3 布尔操作符</h2><p><strong>布尔操作符</strong>一个有三个：<strong>非(NOT)</strong>、 <strong>与(AND)</strong> 和  <strong>或(OR)</strong>。</p>
+<h3 id="5-3-1-逻辑非"><a href="#5-3-1-逻辑非" class="headerlink" title="5.3.1 逻辑非"></a>5.3.1 逻辑非</h3><p><strong>逻辑非</strong>操作符由一个感叹号(<code>!</code>)表示。可以应用于 ECMAScript 中的任何值。遵循以下规则：</p>
+<ul>
+<li>如果操作数是一个<strong>对象</strong>，返回 <strong>false</strong></li>
+<li>如果操作数是一个<strong>空字符串</strong>，返回 <strong>true</strong></li>
+<li>如果操作数是一个<strong>非空字符串</strong>，返回 <strong>false</strong></li>
+<li>如果操作数是<strong>数值 0</strong>，返回 <strong>true</strong></li>
+<li>如果操作数是<strong>任意非 0 数值</strong>(包括 <strong>Infinity</strong>)，返回 <strong>false</strong></li>
+<li>如果操作数是<strong>null</strong>，返回 <strong>true</strong></li>
+<li>如果操作数是<strong>NaN</strong>，返回 <strong>true</strong></li>
+<li>如果操作数是<strong>undefined</strong>，返回 <strong>true</strong></li>
+</ul>
+<p>逻辑非操作可以用于将一个值转换为与其对应的<strong>布尔值</strong>。而同时使用<strong>两个逻辑非</strong>操作符，实际上就会模拟 <code>Boolean()</code> 转型函数的行为。其中第一个逻辑非操作会基于无论什么操作数返回一个布尔值，而第二个逻辑非操作则对该布尔值求反，于是得到了这个值真正对应的布尔值。如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">alert(!!<span class="string">"bule"</span>);      <span class="comment">//警告框显示：true</span></div><div class="line">alert(!!<span class="number">0</span>);           <span class="comment">//警告框显示：false</span></div><div class="line">alert(!!<span class="string">" "</span>);         <span class="comment">//警告框显示：false</span></div><div class="line">alert(!!<span class="literal">NaN</span>);         <span class="comment">//警告框显示：false</span></div><div class="line">alert(!!<span class="number">12345</span>);       <span class="comment">//警告框显示：true</span></div></pre></td></tr></table></figure></p>
+<h3 id="5-3-2-逻辑与"><a href="#5-3-2-逻辑与" class="headerlink" title="5.3.2 逻辑与"></a>5.3.2 逻辑与</h3><p><strong>逻辑与</strong>操作符由两个和号(<code>&amp;&amp;</code>)表示，有两个操作数。其真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第一个操作数</th>
+<th style="text-align:center">第二个操作数</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑与操作符可以用于与任何类型的操作数。不仅仅是<strong>布尔值</strong>。如果有一个操作数不是布尔值的情况下，逻辑与就不一定返回布尔值，此时，它遵循以下规则：</p>
+<ul>
+<li>如果第一个操作数是对象，则返回第二个操作数</li>
+<li>如果第二个操作数是对象，则只有在第一个操作数为<strong>true</strong>的情况下才返回该对象</li>
+<li>如果两个操作数都是对象，则返回第二个操作数</li>
+<li>如果有一个操作数是<strong>null</strong>，则返回<strong>null</strong></li>
+<li>如果有一个操作数是<strong>NaN</strong>，则返回<strong>NaN</strong></li>
+<li>如果有一个操作数是<strong>undefined</strong>，则返回<strong>undefined</strong></li>
+</ul>
+<p>逻辑操作符与属于短路操作，如果第一个操作符能够决定结果，那么不会再对第二个操作符求值。即<strong>只要有一个操作数为<code>false</code>，那么结果就为<code>false</code></strong>。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> found = <span class="literal">true</span>;</div><div class="line"><span class="keyword">var</span> result = (found &amp;&amp; notDefined); <span class="comment">//报错，因为未定义notDefined变量</span></div><div class="line">alert(result);      <span class="comment">//这里不会执行</span></div></pre></td></tr></table></figure></p>
+<p>因为第一个操作数为true，所以就继续对第二个操作数求值，因为未定义，所以发生错误。如果将 <code>var found = true;</code>改为 <code>var found = false;</code> 那么就不会报错了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> found = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> result = (found &amp;&amp; notDefined); <span class="comment">//尽管未定义notDefined变量，但不会报错</span></div><div class="line">alert(result);      <span class="comment">//这里会执行，结果为 false</span></div></pre></td></tr></table></figure>
+<p>因为第一个操作数为false，所以就根本不会对第二个操作数求值。</p>
+<h3 id="5-3-3-逻辑或"><a href="#5-3-3-逻辑或" class="headerlink" title="5.3.3 逻辑或"></a>5.3.3 逻辑或</h3><p><strong>逻辑或</strong>操作符由两个竖线符号(<code>||</code>)表示，有两个操作数。其真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第一个操作数</th>
+<th style="text-align:center">第二个操作数</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<p>与逻辑与操作符相似，如果有一个操作数不是布尔值的情况下，逻辑或就不一定返回布尔值，此时，它遵循以下规则：</p>
+<ul>
+<li>如果第一个操作数是对象，则返回第一个操作数</li>
+<li>如果第一个操作数的求值结果为<strong>flase</strong>，则返回第二个操作数</li>
+<li>如果两个操作数都是对象，则返回第一个操作数</li>
+<li>如果两个个操作数是<strong>null</strong>，则返回<strong>null</strong></li>
+<li>如果两个个操作数是<strong>NaN</strong>，则返回<strong>NaN</strong></li>
+<li>如果两个个操作数是<strong>undefined</strong>，则返回<strong>undefined</strong></li>
+</ul>
+<p>与逻辑与操作符相似，<strong>逻辑或</strong>也是短路操作符，如果第一个操作数的求值结果为 <strong>true</strong>，那么就不会再对第二个操作数进行求值。</p>
+<p><strong>提示</strong>：我们可以利用<strong>逻辑或</strong>的这一行为来避免为变量赋予 <strong>null</strong> 或 <strong>undefined</strong>值。例如：</p>
+<pre><code>var a = b || c;
+</code></pre><p>在这个例子中，变量a将被赋予等号后两个值中的一个。变量b 中包含优先赋给变量a的值，变量c负责在b中不包含有效值的情况下提供后备值。如果a不为null，那么它的值将被赋给a,如果a为null，那么将c的值赋给a,</p>
+<h2 id="5-4-乘性操作符"><a href="#5-4-乘性操作符" class="headerlink" title="5.4 乘性操作符"></a>5.4 乘性操作符</h2>
       
     </div>
     
@@ -832,6 +1011,10 @@ alert（typeof names）； //警告框显示：object
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/JQuery-小示例及讲解/" rel="prev" title="JQuery 小示例及讲解">
+                JQuery 小示例及讲解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -908,7 +1091,7 @@ alert（typeof names）； //警告框显示：object
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -919,7 +1102,7 @@ alert（typeof names）； //警告框显示：object
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -930,7 +1113,7 @@ alert（typeof names）； //警告框显示：object
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -965,7 +1148,7 @@ alert（typeof names）； //警告框显示：object
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-语法"><span class="nav-number">1.</span> <span class="nav-text">1 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-区分大小写"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 区分大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-标识符"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-注释"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-严格模式"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 严格模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-语句"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-关键字和保留字"><span class="nav-number">2.</span> <span class="nav-text">2 关键字和保留字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-变量"><span class="nav-number">3.</span> <span class="nav-text">3 变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-数据类型"><span class="nav-number">4.</span> <span class="nav-text">4 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-typeof-操作符"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 typeof 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Undefined-类型"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Undefined 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Null-类型"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Null 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Boolean-类型"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Boolean 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Number-类型"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Number 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-浮点数值"><span class="nav-number">4.5.1.</span> <span class="nav-text">4.1.1 浮点数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-数值范围"><span class="nav-number">4.5.2.</span> <span class="nav-text">4.1.2 数值范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-NaN"><span class="nav-number">4.5.3.</span> <span class="nav-text">4.3.3 NaN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-数值转换"><span class="nav-number">4.5.4.</span> <span class="nav-text">4.5.4 数值转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-1-Number-函数"><span class="nav-number">4.5.4.1.</span> <span class="nav-text">4.5.4.1 Number( )函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-2-parseInt-函数"><span class="nav-number">4.5.4.2.</span> <span class="nav-text">4.5.4.2 parseInt( )函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-3-parseFloat-函数"><span class="nav-number">4.5.4.3.</span> <span class="nav-text">4.5.4.3 parseFloat( )函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-String-类型"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 String 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-字符字面量"><span class="nav-number">4.6.1.</span> <span class="nav-text">4.6.1 字符字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-字符串的特点"><span class="nav-number">4.6.2.</span> <span class="nav-text">4.6.2 字符串的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-3-转换为字符串"><span class="nav-number">4.6.2.1.</span> <span class="nav-text">4.6.3 转换为字符串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Object-类型"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Object 类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-操作符"><span class="nav-number">5.</span> <span class="nav-text">5 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-一元操作符"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 一元操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-递增和递减操作符"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 递增和递减操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-一元加和减操作符"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 一元加和减操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-位操作符"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 位操作符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-语法"><span class="nav-number">1.</span> <span class="nav-text">1 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-区分大小写"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 区分大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-标识符"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-注释"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-严格模式"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 严格模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-语句"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-关键字和保留字"><span class="nav-number">2.</span> <span class="nav-text">2 关键字和保留字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-变量"><span class="nav-number">3.</span> <span class="nav-text">3 变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-数据类型"><span class="nav-number">4.</span> <span class="nav-text">4 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-typeof-操作符"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 typeof 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Undefined-类型"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Undefined 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Null-类型"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Null 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Boolean-类型"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Boolean 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Number-类型"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Number 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-浮点数值"><span class="nav-number">4.5.1.</span> <span class="nav-text">4.1.1 浮点数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-数值范围"><span class="nav-number">4.5.2.</span> <span class="nav-text">4.1.2 数值范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-NaN"><span class="nav-number">4.5.3.</span> <span class="nav-text">4.3.3 NaN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-数值转换"><span class="nav-number">4.5.4.</span> <span class="nav-text">4.5.4 数值转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-1-Number-函数"><span class="nav-number">4.5.4.1.</span> <span class="nav-text">4.5.4.1 Number( )函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-2-parseInt-函数"><span class="nav-number">4.5.4.2.</span> <span class="nav-text">4.5.4.2 parseInt( )函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-3-parseFloat-函数"><span class="nav-number">4.5.4.3.</span> <span class="nav-text">4.5.4.3 parseFloat( )函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-String-类型"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 String 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-字符字面量"><span class="nav-number">4.6.1.</span> <span class="nav-text">4.6.1 字符字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-字符串的特点"><span class="nav-number">4.6.2.</span> <span class="nav-text">4.6.2 字符串的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-3-转换为字符串"><span class="nav-number">4.6.2.1.</span> <span class="nav-text">4.6.3 转换为字符串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Object-类型"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Object 类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-操作符"><span class="nav-number">5.</span> <span class="nav-text">5 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-一元操作符"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 一元操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-递增和递减操作符"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 递增和递减操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-一元加和减操作符"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 一元加和减操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-位操作符"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 位操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-按位非-NOT"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 按位非(NOT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-按位与-AND"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.1 按位与(AND)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-按位或（OR）"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 按位或（OR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-按位异或（XOR）"><span class="nav-number">5.2.4.</span> <span class="nav-text">5.2.4 按位异或（XOR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-5-左移"><span class="nav-number">5.2.5.</span> <span class="nav-text">5.2.5 左移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-6-有符号的右移"><span class="nav-number">5.2.6.</span> <span class="nav-text">5.2.6 有符号的右移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-7-无符号的右移"><span class="nav-number">5.2.7.</span> <span class="nav-text">5.2.7 无符号的右移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-布尔操作符"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 布尔操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-逻辑非"><span class="nav-number">5.3.1.</span> <span class="nav-text">5.3.1 逻辑非</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-逻辑与"><span class="nav-number">5.3.2.</span> <span class="nav-text">5.3.2 逻辑与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-逻辑或"><span class="nav-number">5.3.3.</span> <span class="nav-text">5.3.3 逻辑或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-乘性操作符"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 乘性操作符</span></a></li></ol></li></ol></div>
             
 
           </div>

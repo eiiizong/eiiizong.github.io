@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[表格变色]]></title>
+    <url>%2F2017%2F08%2F25%2F%E8%A1%A8%E6%A0%BC%E5%8F%98%E8%89%B2%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[JQuery 小示例及讲解]]></title>
     <url>%2F2017%2F08%2F24%2FJQuery-%E5%B0%8F%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%AE%B2%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[1 第一个简单的JQuery程序其代码如下： 123456789101112131415&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;第一个简单的JQuery程序&lt;/title&gt; &lt;script src="script/jquery-3.2.1.js"&gt;&lt;/script&gt; &lt;script&gt; $(document).ready(function()&#123; alert("Hello,welcome to JQuery world!") &#125;) &lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;/body&gt;&lt;/html&gt; 在上述文件的代码中，有一段如下代码： $(document).ready(function(){ //程序段 }) 该段代码类似于传统的JavaScript 代码： window.onload = function(){ //程序段 } 虽然上面两段代码可以互换，但它们还是有一定的区别： 执行时间不同：$(document).ready在页面框架下载完毕后就执行；而window.onload必须在页面全部加载完毕（包括图片下载）后才能执行。所以前者效率高于后者。 执行数量不同：$(document).ready可以重复写多个，并且每次执行结果不同。而window.onload尽管可以写多个，但最后一个会覆盖前面的函数，即只输出最后一个执行结果。 $(document).ready(function(){ })代码可以简写成 $(function(){ })，两者等价。 2 JQuery事件的链式写法]]></content>

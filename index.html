@@ -552,25 +552,15 @@
 
       
         
-          
-            <h1 id="1-第一个简单的JQuery程序"><a href="#1-第一个简单的JQuery程序" class="headerlink" title="1 第一个简单的JQuery程序"></a>1 第一个简单的JQuery程序</h1><p>其代码如下：</p>
+          <h1 id="1-第一个简单的JQuery程序"><a href="#1-第一个简单的JQuery程序" class="headerlink" title="1 第一个简单的JQuery程序"></a>1 第一个简单的JQuery程序</h1><p>其代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">		&lt;title&gt;第一个简单的JQuery程序&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">		&lt;script src="script/</span>jquery<span class="number">-3.2</span><span class="number">.1</span>.js<span class="string">"&gt;&lt;/script&gt;</span></div><div class="line"><span class="string">		&lt;script&gt;</span></div><div class="line"><span class="string">			$(document).ready(function()&#123;</span></div><div class="line"><span class="string">				alert("</span>Hello,welcome to JQuery world!<span class="string">")</span></div><div class="line"><span class="string">			&#125;)</span></div><div class="line"><span class="string">		&lt;/script&gt;</span></div><div class="line"><span class="string">	&lt;/head&gt;</span></div><div class="line"><span class="string">	&lt;body&gt;</span></div><div class="line"><span class="string">	&lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
-<p>在上述文件的代码中，有一段如下代码：</p>
-<pre><code>$(document).ready(function(){
-    //程序段
-})
-</code></pre><p>该段代码类似于传统的JavaScript 代码：</p>
-<pre><code>window.onload = function(){
-    //程序段
-}
-</code></pre><p>虽然上面两段代码可以互换，但它们还是有一定的区别：</p>
-<ul>
-<li>执行时间不同：<code>$(document).ready</code>在<strong>页面框架</strong>下载完毕后就执行；而<code>window.onload</code>必须在<strong>页面全部</strong>加载完毕（包括图片下载）后才能执行。所以前者效率高于后者。</li>
-<li>执行数量不同：<code>$(document).ready</code>可以重复写多个，并且每次执行结果不同。而<code>window.onload</code>尽管可以写多个，但最后一个会覆盖前面的函数，即<strong>只输出最后一个执行结果</strong>。</li>
-<li><code>$(document).ready(function(){ })</code>代码可以简写成 <code>$(function(){ })</code>，两者等价。</li>
-</ul>
-<h1 id="2-JQuery事件的链式写法"><a href="#2-JQuery事件的链式写法" class="headerlink" title="2 JQuery事件的链式写法"></a>2 JQuery事件的链式写法</h1>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/24/JQuery-小示例及讲解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

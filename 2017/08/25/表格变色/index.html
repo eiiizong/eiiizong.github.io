@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oupo5zwub.bkt.clouddn.com/blog/170825/3kk95cABaF.png?imageslim">
 <meta property="og:image" content="http://oupo5zwub.bkt.clouddn.com/blog/170825/IibmGDIFJc.gif">
-<meta property="og:updated_time" content="2017-08-27T05:22:04.930Z">
+<meta property="og:updated_time" content="2017-08-27T05:25:55.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="表格变色">
 <meta name="twitter:description" content="1 表格隔行变色文档加载完毕，表格的就实现了隔行变色。其效果如下图所示：">
@@ -400,17 +400,71 @@
 <p><strong>小知识讲解</strong>：</p>
 <ul>
 <li>以上JS代码中的 <code>tables.rows</code> 的 rows：rows 集合返回表格中所有行（TableRow 对象）的一个数组,即一个 HTMLCollection。其<strong>语法</strong>：<code>tableObject.rows[]</code></li>
-<li><p><strong><table></table></strong> 标签：</p>
-<ul>
+<li><strong><table></table></strong> 标签：<ul>
 <li>所有浏览器都支持</li>
 <li>定义与用法：<table> 标签定义 HTML 表格。简单的 HTML 表格由 table 元素以及一个或多个 tr、th 或 td 元素组成。<br>tr 元素定义表格行，th 元素定义表头，td 元素定义表格单元。<br>更复杂的 HTML 表格也可能包括 caption、col、colgroup、thead、tfoot 以及 tbody 元素。</table></li>
-<li><p>可选的属性如下表所示：</p>
-<p>  | 属性 | 值 | 描述 |<br>  |:—:|:—:|:—-:|<br>  | align | left / center / right | 规定表格相对周围的对齐方式 |<br>  | bgcolor | rgb(x,x,x) / #xxxxxx / colorname | 规定表格的背景颜色 |<br>  | border | px | 规定表格边框的宽度 |<br>  | cellpading | px / % | 规定单元边沿与其内容之间的空白 |<br>  | cellspacing | px / % | 规定单元格之间的空白 |<br>  | width | px / % | 规定表格的宽度 |<br>  | rules | none / groups / rows / cols / all | 规定内侧边框哪个部分是可见的 |<br>  | summary | text | 规定表格的摘要 |<br>  | frame | void / above / below / hsides / lhs / rhs / vsides / box / border | 规定外侧边框哪个部分是可见的 |</p>
-</li>
+<li>可选的属性如下表所示：</li>
 </ul>
 </li>
-<li><p><strong><tbody></tbody></strong> 标签表格主体（正文）。该标签用于组合 HTML 表格的主体内容。</p>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">值</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">align</td>
+<td style="text-align:center">left / center / right</td>
+<td style="text-align:center">规定表格相对周围的对齐方式</td>
+</tr>
+<tr>
+<td style="text-align:center">bgcolor</td>
+<td style="text-align:center">rgb(x,x,x) / #xxxxxx / colorname</td>
+<td style="text-align:center">规定表格的背景颜色</td>
+</tr>
+<tr>
+<td style="text-align:center">border</td>
+<td style="text-align:center">px</td>
+<td style="text-align:center">规定表格边框的宽度</td>
+</tr>
+<tr>
+<td style="text-align:center">cellpading</td>
+<td style="text-align:center">px / %</td>
+<td style="text-align:center">规定单元边沿与其内容之间的空白</td>
+</tr>
+<tr>
+<td style="text-align:center">cellspacing</td>
+<td style="text-align:center">px / %</td>
+<td style="text-align:center">规定单元格之间的空白</td>
+</tr>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center">px / %</td>
+<td style="text-align:center">规定表格的宽度</td>
+</tr>
+<tr>
+<td style="text-align:center">rules</td>
+<td style="text-align:center">none / groups / rows / cols / all</td>
+<td style="text-align:center">规定内侧边框哪个部分是可见的</td>
+</tr>
+<tr>
+<td style="text-align:center">summary</td>
+<td style="text-align:center">text</td>
+<td style="text-align:center">规定表格的摘要</td>
+</tr>
+<tr>
+<td style="text-align:center">frame</td>
+<td style="text-align:center">void / above / below / hsides / lhs / rhs / vsides / box / border</td>
+<td style="text-align:center">规定外侧边框哪个部分是可见的</td>
+</tr>
+</tbody>
+</table>
 <ul>
+<li><strong><tbody></tbody></strong> 标签表格主体（正文）。该标签用于组合 HTML 表格的主体内容。<ul>
 <li>注释：<thead> 内部必须拥有 <tr> 标签！</tr></thead></li>
 <li><thead>、<tbody> 以及 <tfoot> 很少被使用，这是因为糟糕的浏览器支持。tbody 元素应该与 thead 和 tfoot 元素结合起来使用。<br>thead 元素用于对 HTML 表格中的表头内容进行分组，而 tfoot 元素用于对 HTML 表格中的表注（页脚）内容进行分组。它们的出现次序是：thead、tfoot、tbody。</tfoot></tbody></thead></li>
 </ul>

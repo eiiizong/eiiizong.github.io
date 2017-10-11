@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-28T06:01:33.097Z</updated>
+  <updated>2017-10-11T09:14:55.198Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS创建对象的几种方式</title>
+    <link href="http://yoursite.com/2017/09/27/JS%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/09/27/JS创建对象的几种方式/</id>
+    <published>2017-09-27T05:29:48.000Z</published>
+    <updated>2017-10-11T09:14:55.198Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然<code>Object构造函数</code>或<code>对象字面量</code>都可以用创建<strong>单个</strong>对象。 但是这两个方式都有明显的缺点：<strong>使用同一个接口创建多个对象时，会产生很多的重复的代码。</strong>所以引入了 <code>工厂模式</code> 解决这种问题。</p>
+<h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1 工厂模式"></a>1 工厂模式</h2><p>工厂模式是一种设计模式，这种模式抽象了创建具体对象的过程。因为ECMAScript中无法创建<strong>类</strong>，所以开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。如下例所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPeople</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">    <span class="comment">//利用Object构造函数创建一个实例</span></div><div class="line">	<span class="keyword">var</span> People = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">	<span class="comment">//定义实例的属性和方法</span></div><div class="line">	<span class="comment">//姓名——属性</span></div><div class="line">	People.name = name;	</div><div class="line">	<span class="comment">//年龄——属性</span></div><div class="line">	People.age = <span class="number">22</span>;</div><div class="line">	<span class="comment">//显示该实例的一些信息——方法</span></div><div class="line">	People.showInfo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> showInfo = <span class="string">'Hello! '</span>+<span class="keyword">this</span>.name+<span class="string">' 你已经 '</span>+<span class="keyword">this</span>.age+<span class="string">' 岁了！'</span>;</div><div class="line">		<span class="comment">//如下创建一个eiiizong实例对象，然后调用showInfo方法</span></div><div class="line">		<span class="comment">//警告弹出显示：Hello! Eiiizong 你已经 22 岁了！</span></div><div class="line">		alert(showInfo); </div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//返回该实例对象，其中包含了上面所定义的一些的属性和方法</span></div><div class="line">	<span class="keyword">return</span> People;</div><div class="line">&#125;</div><div class="line"><span class="comment">//利用createPeople函数创建一个实例对象eiiizong</span></div><div class="line"><span class="keyword">var</span> people1 = createPeople(<span class="string">'Eiiizong'</span>,<span class="number">22</span>);</div><div class="line">people1.showInfo();</div></pre></td></tr></table></figure>
+<p>函数 createPeople（）能够根据接收的参数来构建一个包含所有必要信息的people对象。可以无数次的调用这个函数，而每次它都返回一个包含两个属性和一个方法的对象。</p>
+<p>在上面的代码中有这样一段代码 <code>console.log(this);</code>，而这个<strong>this</strong>在控制台输出的是什么呢？输出如下：</p>
+<pre><code>{
+    name: &quot;Eiiizong&quot;, 
+    age: 22, 
+    showInfo: ƒ
+}
+</code></pre><p>所以当前的 <strong>this</strong> 指向的是对象<strong> people1</strong>。即和 <code>console.log（people1）</code> 的输出结果是一样的。</p>
+<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别问题（即怎么知道一个对象的类型？）。所以又出现了以下新模式。</p>
+<h2 id="2-构造函数模式"><a href="#2-构造函数模式" class="headerlink" title="2 构造函数模式"></a>2 构造函数模式</h2><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然&lt;code&gt;Object构造函数&lt;/code&gt;或&lt;code&gt;对象字面量&lt;/code&gt;都可以用创建&lt;strong&gt;单个&lt;/strong&gt;对象。 但是这两个方式都有明显的缺点：&lt;strong&gt;使用同一个接口创建多个对象时，会产生很多的重复的代码。&lt;/strong&gt;所以引入了 &lt;code&gt;工厂模式&lt;/code&gt; 解决这种问题。&lt;/p&gt;
+&lt;h2 id=&quot;1-工厂模式&quot;&gt;&lt;a href=&quot;#1-工厂模式&quot; class=&quot;headerlink&quot; title=&quot;1 工厂模式&quot;&gt;&lt;/a&gt;1 工厂模式&lt;/h2&gt;&lt;p&gt;工厂模式是一种设计模式，这种模式抽象了创建具体对象的过程。因为ECMAScript中无法创建&lt;strong&gt;类&lt;/strong&gt;，所以开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。如下例所示：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//创建一个函数&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;createPeople&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;name,age&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//利用Object构造函数创建一个实例&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; People = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//定义实例的属性和方法&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//姓名——属性&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	People.name = name;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//年龄——属性&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	People.age = &lt;span class=&quot;number&quot;&gt;22&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//显示该实例的一些信息——方法&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	People.showInfo = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; showInfo = &lt;span class=&quot;string&quot;&gt;&#39;Hello! &#39;&lt;/span&gt;+&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name+&lt;span class=&quot;string&quot;&gt;&#39; 你已经 &#39;&lt;/span&gt;+&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.age+&lt;span class=&quot;string&quot;&gt;&#39; 岁了！&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//如下创建一个eiiizong实例对象，然后调用showInfo方法&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;//警告弹出显示：Hello! Eiiizong 你已经 22 岁了！&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		alert(showInfo); &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//返回该实例对象，其中包含了上面所定义的一些的属性和方法&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; People;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//利用createPeople函数创建一个实例对象eiiizong&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; people1 = createPeople(&lt;span class=&quot;string&quot;&gt;&#39;Eiiizong&#39;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;22&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;people1.showInfo();&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;函数 createPeople（）能够根据接收的参数来构建一个包含所有必要信息的people对象。可以无数次的调用这个函数，而每次它都返回一个包含两个属性和一个方法的对象。&lt;/p&gt;
+&lt;p&gt;在上面的代码中有这样一段代码 &lt;code&gt;console.log(this);&lt;/code&gt;，而这个&lt;strong&gt;this&lt;/strong&gt;在控制台输出的是什么呢？输出如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+    name: &amp;quot;Eiiizong&amp;quot;, 
+    age: 22, 
+    showInfo: ƒ
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以当前的 &lt;strong&gt;this&lt;/strong&gt; 指向的是对象&lt;strong&gt; people1&lt;/strong&gt;。即和 &lt;code&gt;console.log（people1）&lt;/code&gt; 的输出结果是一样的。&lt;/p&gt;
+&lt;p&gt;工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别问题（即怎么知道一个对象的类型？）。所以又出现了以下新模式。&lt;/p&gt;
+&lt;h2 id=&quot;2-构造函数模式&quot;&gt;&lt;a href=&quot;#2-构造函数模式&quot; class=&quot;headerlink&quot; title=&quot;2 构造函数模式&quot;&gt;&lt;/a&gt;2 构造函数模式&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="面向对象" scheme="http://yoursite.com/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="创建对象" scheme="http://yoursite.com/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="面向对象编程" scheme="http://yoursite.com/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>JQuery 选择器一览表</title>
@@ -375,9 +425,9 @@
       <category term="一些你可能会用到的小实例" scheme="http://yoursite.com/categories/%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84%E5%B0%8F%E5%AE%9E%E4%BE%8B/"/>
     
     
-      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
-    
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
     
       <category term="table" scheme="http://yoursite.com/tags/table/"/>
     

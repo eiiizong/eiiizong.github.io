@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-11T12:11:27.798Z</updated>
+  <updated>2017-10-12T14:03:04.862Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/27/JS%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/09/27/JS创建对象的几种方式/</id>
     <published>2017-09-27T05:29:48.000Z</published>
-    <updated>2017-10-11T12:11:27.798Z</updated>
+    <updated>2017-10-12T14:03:04.862Z</updated>
     
     <content type="html"><![CDATA[<p>虽然<code>Object构造函数</code>或<code>对象字面量</code>都可以用创建<strong>单个</strong>对象。 但是这两个方式都有明显的缺点：<strong>使用同一个接口创建多个对象时，会产生很多的重复的代码。</strong>所以引入了 <code>工厂模式</code> 解决这种问题。</p>
 <h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1 工厂模式"></a>1 工厂模式</h2><p>工厂模式是一种设计模式，这种模式抽象了创建具体对象的过程。因为ECMAScript中无法创建<strong>类</strong>，所以开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。如下例所示：</p>
@@ -83,7 +83,37 @@ console.log(people1 instanceof Object); //输出结果：true
 <p>在这个例子中，我们把 showInfo（）函数的定义转移到了构造函数的外部。而在构造函数的内部，我们把showInfo 属性设置成等于全局的 func 函数。这样一来，由于 showInfo 属性包含的是一个指向 func 函数的<strong>指针</strong>，因此，people1 和 people2 对象就共享了在全局作用域定义的 func（）函数。这样做确实解决了两个函数两个函数做同一件事的问题。</p>
 <p>那么新的问题来了： 在全局作用域中定义的函数实际上只能被某个对象调用，这让全局作用域有点尴尬。而更让人无法接受的是：如果对象需要定义很多个方法，那么我们就需要定义很多个全局函数，于是我们这个自定义的构造函数就没什么封装性可言了。</p>
 <p>上述问题就可以通过<strong>原型模式</strong>来解决<del>~</del>~</p>
-<h2 id="3-原型模式"><a href="#3-原型模式" class="headerlink" title="3 原型模式"></a>3 原型模式</h2><p>待更新········</p>
+<h2 id="3-原型模式"><a href="#3-原型模式" class="headerlink" title="3 原型模式"></a>3 原型模式</h2><p>在这里我们要知道：我们创建的每个函数都有一个 <strong>prototype(原型)</strong> 属性,这个属性其本质是一个 <strong>指针</strong>，指向一个对象。而这个对象包含可以由特定类型的所有实例<strong>共享</strong>的属性和方法。</p>
+<p>按照字面意思来理解就是：prototype 就是调用构造函数而创建的实例的原型对象。</p>
+<p>使用原型对象的好处是：所有对象实例共享它所包含的属性和方法。换句话说就是，不必在构造函数中定义对象的属性和方法，而是将这些属性和方法直接添加到原型对象中。如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">People.prototype.name = <span class="string">"Eiiizong"</span>;</div><div class="line">People.prototype.age = <span class="number">22</span>;</div><div class="line">People.prototype.showInfo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> showInfo = <span class="string">'Hello! '</span>+<span class="keyword">this</span>.name+<span class="string">' 你已经 '</span>+<span class="keyword">this</span>.age+<span class="string">' 岁了！'</span>;</div><div class="line">	alert(showInfo); </div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> people1 = <span class="keyword">new</span> People();</div><div class="line">people1.showInfo();<span class="comment">//警告框提示：Hello! Eiiizong 你已经 22 岁了！</span></div><div class="line"><span class="keyword">var</span> people2 = <span class="keyword">new</span> People();</div><div class="line">people2 .showInfo();<span class="comment">//警告框提示：Hello! Eiiizong 你已经 22 岁了！</span></div><div class="line"><span class="built_in">console</span>.log(people1.showInfo === people2.showInfo)<span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，我们直接将showInfo方法和所有属性直接添加到了 People的prototype属性中，构造函数变成了空函数。即使这样我们也可以通过调用构造函数来创建新对象实例。而通过此构造函数创建的所有对象实例都拥有相同的属性和方法。它与构造函数模式不同的地方是：<strong>新对象实例的所有属性和方法是所有通过此构造函数创建的对象实例所共享的</strong>。换句话说就是 people1 和 people2 访问的都是同一组属性和同一个 showInfo方法。这点在上面代码中 <code>console.log(people1.showInfo === people2.showInfo)</code>返回值为 <strong>true</strong> 已得到验证。</p>
+<h3 id="3-1-理解原型对象"><a href="#3-1-理解原型对象" class="headerlink" title="3.1 理解原型对象"></a>3.1 理解原型对象</h3><p>无论什么时候，我们创建一个函数，就会默认的给这个函数创建一个 <strong>prototype</strong> 属性，这个属性指向<strong>该函数的原型对象</strong>。同时在默认情况下，所有的原型对象还会自动获取一个<strong>constructor</strong>（构造函数）属性。这个属性也是一个指针，<strong>指向prototype属性所在函数的指针</strong>。</p>
+<p>拿前面的例子来说，<code>People.prototype.constructor</code> 就指向 <code>People</code> 这个函数。通过这个<code>People</code>构造函数我们还可以继续为原型对象动态的添加其他的属性和方法。</p>
+<p>创建一个自定义构造函数之后，其<strong>原型对象</strong>中只会默认包含一个<strong>constructor</strong>属性。至于其他方法就是<strong>继承于Object</strong>。当创建一个构造函数后，其内部默认包含一个<strong>prototype</strong>属性。利用构造函数创建一个实例后，该实例就会获取到这个属性，因为这个<strong>prototype</strong>属性本质是一个指针，所以该实例内部就包含了一个<strong>指针</strong>，该指针指向<strong>构造函数的原型对象</strong>。在ECMA-262 第5版中称这个指针叫<code>[[prototype]]</code>,虽然在脚本中没有标准方式访问这个指针，但 Chrome 等浏览器在每个对象上都支持一个属性 <code>_proto_</code>。要明确一点的是这个连接存在于<strong>实例与原型对象之间</strong>，而不是实例与构造函数之间。</p>
+<p>虽然在所有的实现中无法访问到<code>[[prototype]]</code>，但是可以通过 <code>isPrototypeOf（）</code>方法来确定对象之间是否存在这种关系。如果<code>[[prototype]]</code>指向 <strong>调用<code>isPrototypeOf（）</code>方法的对象</strong>，那么就返回 <strong>true</strong>。如下：</p>
+<pre><code>alert(People.prototype.isPrototypeOf(people1));//true
+</code></pre><p>上面这段代码表示：people1这个对象中的<code>[[prototype]]</code>指针指向了<code>People.prototype</code>这个原型对象。所有返回 true。</p>
+<p>ECMAScript 5 中新增了一个方法，叫 <code>Object.getPrototypeOf（）</code>，在所有支持实现中，这个方法返回 <code>[[prototype]]</code> 的值。例如：</p>
+<pre><code>alert(Object.getPrototypeOf(people1) == People.prototype);//true
+alert(Object.getPrototypeOf(people1).name);//Eiiizong
+</code></pre><p>上面的第一段代码只是确定了<code>Object.getPrototypeOf（）</code>返回的对象就是这个对象的原型。第二段代码获取了原型对象中的 name 属性的值：Eiiizong。</p>
+<h4 id="3-1-1-对象属性和方法的搜索机制"><a href="#3-1-1-对象属性和方法的搜索机制" class="headerlink" title="3.1.1 对象属性和方法的搜索机制"></a>3.1.1 对象属性和方法的搜索机制</h4><p>每当代码读取到某个对象的某个属性时，就会进行一次搜索，目标是具有给定名字的属性。搜索过程如下：</p>
+<ul>
+<li>1、从对象实例本身开始搜索。如果有就返回，没有继续进行下一步搜索</li>
+<li>2、在对象实例本身包含的指针指向的原型对象中搜索。有就返回。</li>
+</ul>
+<p>其方法的搜索机制和属性一样。</p>
+<h4 id="3-1-2-屏蔽原理"><a href="#3-1-2-屏蔽原理" class="headerlink" title="3.1.2 屏蔽原理"></a>3.1.2 屏蔽原理</h4><p><strong>注意</strong>：我们创建的实例虽然可以访问保存在原型对象中的值，但我们不能通过对象实例重写原型中的值。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">People.prototype.name = <span class="string">"Eiiizong"</span>;</div><div class="line">People.prototype.age = <span class="number">22</span>;</div><div class="line">People.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>.name); </div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> people1 = <span class="keyword">new</span> People();</div><div class="line">people1.name = <span class="string">'zxm'</span>;</div><div class="line">people1.showName();<span class="comment">//zxm——来自实例</span></div><div class="line"><span class="keyword">var</span> people2 = <span class="keyword">new</span> People();</div><div class="line">people2.showName();<span class="comment">//Eiiizong——来自原型</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，people1 的 name 被一个新的值 <strong>屏蔽</strong>了。但两个实例都能正常的返回值。就如上面所讲的搜索原理，对于people1， 它对象实例中包含了 name 属性，所以就不会在到原型对象中继续搜索了。而对于 people2，其对象实例中没有 name 属性，所以就继续到原型对象中去搜索name属性。</p>
+<p>当为对象实例添加一个属性时，这个属性就会<strong>屏蔽原型对象中保存的同名属性</strong>。换句话说添加这个属性只会<strong>阻止</strong>我们访问原型对象中的那个属性。但<strong>不会修改</strong>那个属性。即使这个属性的值设置为 null ，也只会在实例对象中设置这个属性。</p>
+<p>使用<code>delete</code>操作符可以完全删除<strong>实例属性</strong>，从而使我们可以重新访问原型对象中的属性。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">People.prototype.name = <span class="string">"Eiiizong"</span>;</div><div class="line">People.prototype.age = <span class="number">22</span>;</div><div class="line">People.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>.name); </div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> people1 = <span class="keyword">new</span> People();</div><div class="line">people1.name = <span class="string">'zxm'</span>;</div><div class="line">people1.showName();<span class="comment">//zxm——来自实例</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> people1.name;</div><div class="line"></div><div class="line">people1.showName();<span class="comment">//Eiiizong——来自原型</span></div><div class="line"><span class="keyword">var</span> people2 = <span class="keyword">new</span> People();</div><div class="line">people2.showName();<span class="comment">//Eiiizong——来自原型</span></div></pre></td></tr></table></figure>
+<h4 id="3-1-3-hasOwnProperty（）方法"><a href="#3-1-3-hasOwnProperty（）方法" class="headerlink" title="3.1.3 hasOwnProperty（）方法"></a>3.1.3 hasOwnProperty（）方法</h4><p>使用 <code>hasOwnProperty（）</code>方法可以检测一个属性是存在于实例中还是原型中。这个方法是<strong>继承于Object</strong>。 只有在给定的属性存在于对象实例中时才返回 <strong>true</strong>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">People.prototype.name = <span class="string">"Eiiizong"</span>;</div><div class="line">People.prototype.age = <span class="number">22</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> people1 = <span class="keyword">new</span> People();</div><div class="line">alert(people1.hasOwnProperty(<span class="string">'name'</span>));<span class="comment">//false</span></div><div class="line"></div><div class="line">people1.name = <span class="string">'zxm'</span>;</div><div class="line">alert(people1.hasOwnProperty(<span class="string">'name'</span>));<span class="comment">//true</span></div></pre></td></tr></table></figure>
+<h3 id="3-2-原型与-in-操作符"><a href="#3-2-原型与-in-操作符" class="headerlink" title="3.2 原型与 in 操作符"></a>3.2 原型与 in 操作符</h3><p>有两种方法使用<code>in</code>操作符：<strong>单独使用</strong>和在 <strong>for-in 循环</strong>中使用。当单独使用时，    <code>in</code>操作符会在通过对象访问给定属性时返回 <strong>true</strong>，无论该属性存在于实例中还是原型中。</p>
+<p>持续更新中····</p>
 ]]></content>
     
     <summary type="html">
@@ -474,9 +504,9 @@ console.log(people1 instanceof Object); //输出结果：true
       <category term="一些你可能会用到的小实例" scheme="http://yoursite.com/categories/%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84%E5%B0%8F%E5%AE%9E%E4%BE%8B/"/>
     
     
-      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
-    
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
     
       <category term="table" scheme="http://yoursite.com/tags/table/"/>
     

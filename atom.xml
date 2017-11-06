@@ -519,9 +519,9 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
       <category term="一些你可能会用到的小实例" scheme="http://yoursite.com/categories/%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84%E5%B0%8F%E5%AE%9E%E4%BE%8B/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
       <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
       <category term="table" scheme="http://yoursite.com/tags/table/"/>
     

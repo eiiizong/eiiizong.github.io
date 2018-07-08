@@ -329,9 +329,9 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     <link href="http://yoursite.com/2017/08/28/JQuery-%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%80%E8%A7%88%E8%A1%A8/"/>
     <id>http://yoursite.com/2017/08/28/JQuery-选择器一览表/</id>
     <published>2017-08-28T05:42:11.000Z</published>
-    <updated>2018-07-08T10:20:54.984Z</updated>
+    <updated>2018-07-08T10:28:06.834Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><table>
+    <content type="html"><![CDATA[<h1 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">选择器</th>
@@ -367,7 +367,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
 </tr>
 </tbody>
 </table>
-<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><table>
+<h2 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">选择器</th>
@@ -398,7 +398,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
 </tr>
 </tbody>
 </table>
-<h3 id="简单过滤选择器"><a href="#简单过滤选择器" class="headerlink" title="简单过滤选择器"></a>简单过滤选择器</h3><table>
+<h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2><h3 id="简单过滤选择器"><a href="#简单过滤选择器" class="headerlink" title="简单过滤选择器"></a>简单过滤选择器</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">选择器</th>
@@ -557,7 +557,6 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
 </tr>
 </tbody>
 </table>
-<p> 元素集合</p>
 <h3 id="子元素过滤选择器"><a href="#子元素过滤选择器" class="headerlink" title="子元素过滤选择器"></a>子元素过滤选择器</h3><table>
 <thead>
 <tr>
@@ -623,7 +622,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
 </tr>
 </tbody>
 </table>
-<h3 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h3><table>
+<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">选择器</th>
@@ -683,7 +682,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     
     <summary type="html">
     
-      &lt;h2 id=&quot;JQuery-选择器一览表&quot;&gt;&lt;a href=&quot;#JQuery-选择器一览表&quot; class=&quot;headerlink&quot; title=&quot;JQuery 选择器一览表:&quot;&gt;&lt;/a&gt;JQuery 选择器一览表:&lt;/h2&gt;&lt;h3 id=&quot;基本选择器&quot;&gt;&lt;a href=&quot;#基本
+      &lt;h1 id=&quot;JQuery-选择器一览表&quot;&gt;&lt;a href=&quot;#JQuery-选择器一览表&quot; class=&quot;headerlink&quot; title=&quot;JQuery 选择器一览表:&quot;&gt;&lt;/a&gt;JQuery 选择器一览表:&lt;/h1&gt;&lt;h2 id=&quot;基本选择器&quot;&gt;&lt;a href=&quot;#基本
     
     </summary>
     

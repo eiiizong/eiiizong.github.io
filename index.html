@@ -822,7 +822,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  964 字
+                  1,082 字
                 </span>
               
 
@@ -861,197 +861,351 @@
       
         
           
-            <h1 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h1><table>
+            <h2 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><table>
 <thead>
 <tr>
-<th style="text-align:center">值</th>
-<th style="text-align:center">描述</th>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$(‘*’)</td>
-<td style="text-align:center">选择所有元素</td>
+<td style="text-align:center"><code>#id</code></td>
+<td style="text-align:center">根据给定的 <strong>ID</strong> 匹配一个元素</td>
+<td style="text-align:center">单个元素</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag’)</td>
-<td style="text-align:center">选择所有HTML标签中的 tag 元素</td>
+<td style="text-align:center"><code>element</code></td>
+<td style="text-align:center">根据给定的 <strong>元素名</strong> 匹配所有元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tagA tagB’)</td>
-<td style="text-align:center">选择作为 tagA 后代的所有 tagB 元素</td>
+<td style="text-align:center"><code>.class</code></td>
+<td style="text-align:center">根据给定的 <strong>类</strong> 匹配元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tagA, tagB, tagC’)</td>
-<td style="text-align:center">选择所有 tagA 元素、tagB 元素和 tagC 元素</td>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">匹配 <strong>所有</strong> 元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘#id’)</td>
-<td style="text-align:center">选择所有ID名为 id 的元素</td>
+<td style="text-align:center"><code>selector1, selectorN</code></td>
+<td style="text-align:center">将 <strong>每一个选择器匹配到的元素合并</strong> 后一起返回</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ancestor descendant</code></td>
+<td style="text-align:center">根据 <strong>祖先元素</strong> 匹配所有的 <strong>后代元素</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag #id’)</td>
-<td style="text-align:center">选择所有标签为 tagA 且ID名为 id 的元素</td>
+<td style="text-align:center"><code>parent &gt; child</code></td>
+<td style="text-align:center">根据 <strong>父元素</strong> 匹配所有的 <strong>子元素</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘.className’)</td>
-<td style="text-align:center">选择所有类名为 className 的元素</td>
+<td style="text-align:center"><code>.prev + next</code></td>
+<td style="text-align:center">匹配所有紧接在 <strong>prev 元素</strong>后的 <strong>相邻元素</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag .className’)</td>
-<td style="text-align:center">选择所有类名为 className 且标签为 tag 的元素</td>
+<td style="text-align:center"><code>prev ~ siblings</code></td>
+<td style="text-align:center">匹配 <strong>prev 元素</strong> 之后的所有 <strong>兄弟元素</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="简单过滤选择器"><a href="#简单过滤选择器" class="headerlink" title="简单过滤选择器"></a>简单过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>first() 或 :first</code></td>
+<td style="text-align:center">获取 <strong>第一个</strong> 元素</td>
+<td style="text-align:center">单个元素</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag [attr]’)</td>
-<td style="text-align:center">选择所有带有 attr 属性的 tag 元素</td>
+<td style="text-align:center"><code>last() 或 :last</code></td>
+<td style="text-align:center">获取 <strong>最后一个</strong> 元素</td>
+<td style="text-align:center">单个元素</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr = value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值恰好等于 value 的 tag 元素</td>
+<td style="text-align:center"><code>:not(selector)</code></td>
+<td style="text-align:center">获取 <strong>除给定选择器外</strong> 的所有元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr *= value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值中包含字符串 value 的 tag 元素</td>
+<td style="text-align:center"><code>:even</code></td>
+<td style="text-align:center">获取所有索引值为 <strong>偶数</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr ~= value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值为空格分隔的多个字符串且其中一个字符串等于 value的 tag 元素</td>
+<td style="text-align:center"><code>:odd</code></td>
+<td style="text-align:center">获取所有索引值为 <strong>奇数</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr ^= value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值以 value 开头的 tag 元素</td>
+<td style="text-align:center"><code>:eq(index)</code></td>
+<td style="text-align:center">获取 <strong>指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">单个元素</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr $= value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值以 value 结尾的 tag 元素</td>
+<td style="text-align:center"><code>:gt(index)</code></td>
+<td style="text-align:center">获取所有 <strong>大于指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag[attr != value]’)</td>
-<td style="text-align:center">选择所有 attr 属性值不等于 value 的 tag 元素</td>
+<td style="text-align:center"><code>:lt(index)</code></td>
+<td style="text-align:center">获取所有 <strong>小于指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tagA &gt; tagB’)</td>
-<td style="text-align:center">选择作为 tagA 元素子元素的所有 tagB 元素</td>
+<td style="text-align:center"><code>:header</code></td>
+<td style="text-align:center">获取所有 <strong>标题类型</strong> 的元素，如 <code>h1</code>、<code>h2</code> …</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tagA + tagB’)</td>
-<td style="text-align:center">选择紧邻 tagA 元素且位于其后的 tagB 元素</td>
+<td style="text-align:center"><code>:animated</code></td>
+<td style="text-align:center">获取正在 <strong>执行动画效果</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内容过滤选择器"><a href="#内容过滤选择器" class="headerlink" title="内容过滤选择器"></a>内容过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:contains(text)</code></td>
+<td style="text-align:center">获取 <strong>包含给定文本</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tagA ~ tagB’)</td>
-<td style="text-align:center">选择作为 tagA 同辈元素且位于其后的所有 tagB 元素</td>
+<td style="text-align:center"><code>:empty</code></td>
+<td style="text-align:center">获取所有 <strong>不包含子元素或文本</strong> 的空元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:root’)</td>
-<td style="text-align:center">选择作为文档根元素的 tag 元素</td>
+<td style="text-align:center"><code>:has(selector)</code></td>
+<td style="text-align:center">获取 <strong>含有选择器所匹配的元素</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:nth-child(n)’)</td>
-<td style="text-align:center">选择作为其父元素正数第 n 个子元素的所有 tag 元素</td>
+<td style="text-align:center"><code>:parent</code></td>
+<td style="text-align:center">获取 <strong>含有子元素或文本</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="可见性过滤选择器"><a href="#可见性过滤选择器" class="headerlink" title="可见性过滤选择器"></a>可见性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:hidden</code></td>
+<td style="text-align:center">获取所有 <strong>不可见元素或者 <code>type</code> 为 <code>hidden</code></strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:nth-last-child(n)’)</td>
-<td style="text-align:center">选择作为其父元素倒数第 n 个子元素的所有 tag 元素</td>
+<td style="text-align:center"><code>:visible</code></td>
+<td style="text-align:center">获取所有的 <strong>可见</strong> 元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性过滤选择器"><a href="#属性过滤选择器" class="headerlink" title="属性过滤选择器"></a>属性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>[attribute]</code></td>
+<td style="text-align:center">获取 <strong>包含给定属性</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:nth-of-type(n)’)</td>
-<td style="text-align:center">选择几个同辈 tag 元素中的正数第 n 个</td>
+<td style="text-align:center"><code>[attribute=value]</code></td>
+<td style="text-align:center">获取 <strong>等于给定的属性是某个特定值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:nth-last-of-type(n)’)</td>
-<td style="text-align:center">选择几个同辈 tag 元素中的倒数第 n 个</td>
+<td style="text-align:center"><code>[attribute!=value]</code></td>
+<td style="text-align:center">获取 <strong>不等于给的定属性是某个特定值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:first-child’)</td>
-<td style="text-align:center">选择作为其父元素第 1 个子元素的所有 tag 元素</td>
+<td style="text-align:center"><code>[attribute^=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以某些值开始</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:last-child’)</td>
-<td style="text-align:center">选择作为其父元素最后 1 个子元素的所有 tag 元素</td>
+<td style="text-align:center"><code>[attribute$=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以某些值结尾</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:first-of-type’)</td>
-<td style="text-align:center">选择几个同辈 tag 元素中的第一个</td>
+<td style="text-align:center"><code>[attribute*=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以包含某些值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:last-of-type’)</td>
-<td style="text-align:center">选择几个同辈 tag 元素中的最后一个</td>
+<td style="text-align:center"><code>[selector1][selector2][selectorN]</code></td>
+<td style="text-align:center">获取 <strong>满足多个条件的复合属性</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<p> 元素集合</p>
+<h3 id="子元素过滤选择器"><a href="#子元素过滤选择器" class="headerlink" title="子元素过滤选择器"></a>子元素过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">`:nth-child(eq</td>
+<td style="text-align:center">even</td>
+<td style="text-align:center">odd</td>
+<td>index)`</td>
+<td>获取 <strong>每个父元素下的特定位置</strong> 元素，索引号从 <code>1</code> 开始</td>
+<td>元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:only-child’)</td>
-<td style="text-align:center">选择作为其父元素唯一子元素的 tag 元素</td>
+<td style="text-align:center"><code>:fisrt-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的第一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:only-of-type’)</td>
-<td style="text-align:center">选择同辈元素中唯一一个标签为 tag 的元素</td>
+<td style="text-align:center"><code>:last-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的最后一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:empty’)</td>
-<td style="text-align:center">选择所有没有子元素的 tag 元素</td>
+<td style="text-align:center"><code>:only-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的仅有一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单对象属性过滤选择器"><a href="#表单对象属性过滤选择器" class="headerlink" title="表单对象属性过滤选择器"></a>表单对象属性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:enabled</code></td>
+<td style="text-align:center">获取表单中所有属性为 <strong>可用</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:enabled’)</td>
-<td style="text-align:center">选择界面元素中所有已经启用的 tag 元素</td>
+<td style="text-align:center"><code>:disabled</code></td>
+<td style="text-align:center">获取表单中所有属性为 <strong>不可用</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:disabled’)</td>
-<td style="text-align:center">选择界面元素中所有已经禁用的 tag 元素</td>
+<td style="text-align:center"><code>:checked</code></td>
+<td style="text-align:center">获取表单中所有 <strong>被选中</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:checked’)</td>
-<td style="text-align:center">选择界面元素中所有已经被选中的 tag 元素(如复选框和单选按钮)</td>
+<td style="text-align:center"><code>:selected</code></td>
+<td style="text-align:center">获取表单中所有 <strong>被选中 <code>option</code></strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:input</code></td>
+<td style="text-align:center">获取所有 <strong><code>input</code>、<code>textarea</code>、<code>select</code></strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:not(s)’)</td>
-<td style="text-align:center">选择与选择器 s 不匹配的所有 tag 元素</td>
+<td style="text-align:center"><code>:password</code></td>
+<td style="text-align:center">获取所有 <strong>密码框</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:even’)</td>
-<td style="text-align:center">选择匹配元素集中偶数序号的元素——特别适合突出显示表格行</td>
+<td style="text-align:center"><code>:radio</code></td>
+<td style="text-align:center">获取所有 <strong>单选按钮</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:odd’)</td>
-<td style="text-align:center">选择匹配元素集中奇数序号的元素</td>
+<td style="text-align:center"><code>:checkbox</code></td>
+<td style="text-align:center">获取所有 <strong>复选框</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:eq(0)’)</td>
-<td style="text-align:center">选择择匹配元素集中的第一个元素</td>
+<td style="text-align:center"><code>:submit</code></td>
+<td style="text-align:center">获取所有 <strong>提交按钮</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:nth(0)’)</td>
-<td style="text-align:center">选择择匹配元素集中的第一个元素</td>
+<td style="text-align:center"><code>:image</code></td>
+<td style="text-align:center">获取所有 <strong>图像域</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:gt(n)’)</td>
-<td style="text-align:center">选择择匹配元素集中索引值大于 n 的所有元素</td>
+<td style="text-align:center"><code>:reset</code></td>
+<td style="text-align:center">获取所有 <strong>重置按钮</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:lt(n)’)</td>
-<td style="text-align:center">选择择匹配元素集中索引值小于 n 的所有元素</td>
+<td style="text-align:center"><code>:button</code></td>
+<td style="text-align:center">获取所有 <strong>按钮</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 <tr>
-<td style="text-align:center">$(‘tag:first’)</td>
-<td style="text-align:center">选择择匹配元素集中的第一个元素，即等价于 :eq(0)</td>
-</tr>
-<tr>
-<td style="text-align:center">$(‘tag:last’)</td>
-<td style="text-align:center">选择择匹配元素集中的最后一个元素</td>
-</tr>
-<tr>
-<td style="text-align:center">$(‘tag:parent’)</td>
-<td style="text-align:center">选择择匹配元素集中包含子元素（文本节点也算）的所有元素</td>
-</tr>
-<tr>
-<td style="text-align:center">$(‘tag:contains(‘test’))</td>
-<td style="text-align:center">选择择匹配元素集中包含指定文本的所有元素</td>
-</tr>
-<tr>
-<td style="text-align:center">$(‘tag:visiable’)</td>
-<td style="text-align:center">选择择匹配元素集中所有可见的元素(包括display属性为block和inline、visibility属性为visible以及type属性不是hidden的表单元素)</td>
-</tr>
-<tr>
-<td style="text-align:center">$(‘tag:hidden’)</td>
-<td style="text-align:center">选择择匹配元素集中所有隐藏的元素(包括display属性为none、visibility属性为hidden以及type属性是hidden的表单元素)</td>
+<td style="text-align:center"><code>:file</code></td>
+<td style="text-align:center">获取所有 <strong>文件域</strong></td>
+<td style="text-align:center">元素集合</td>
 </tr>
 </tbody>
 </table>
@@ -2023,7 +2177,7 @@
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
     <span title="Site words total count">
-      25.8k
+      25.9k
     </span>
   
 </div>

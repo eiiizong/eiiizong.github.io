@@ -329,7 +329,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     <link href="http://yoursite.com/2017/08/28/JQuery-%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%80%E8%A7%88%E8%A1%A8/"/>
     <id>http://yoursite.com/2017/08/28/JQuery-选择器一览表/</id>
     <published>2017-08-28T05:42:11.000Z</published>
-    <updated>2018-07-08T10:28:06.834Z</updated>
+    <updated>2018-07-08T10:32:13.914Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
 <thead>
@@ -567,9 +567,9 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">`:nth-child(eq</td>
-<td style="text-align:center">even</td>
-<td style="text-align:center">odd</td>
+<td style="text-align:center">`:nth-child(eq\</td>
+<td style="text-align:center">even\</td>
+<td style="text-align:center">odd\</td>
 <td>index)`</td>
 <td>获取 <strong>每个父元素下的特定位置</strong> 元素，索引号从 <code>1</code> 开始</td>
 <td>元素集合</td>

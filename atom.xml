@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-20T08:59:48.443Z</updated>
+  <updated>2019-03-05T10:43:29.461Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,25 +16,236 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>node-path</title>
+    <link href="http://yoursite.com/2019/03/05/node-path/"/>
+    <id>http://yoursite.com/2019/03/05/node-path/</id>
+    <published>2019-03-05T09:07:20.000Z</published>
+    <updated>2019-03-05T10:43:29.461Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="path"><a href="#path" class="headerlink" title="path"></a>path</h2><p><code>path</code> 模块提供了一些用于处理文件路径和目录路径的工具函数。使用之前要通过以下方式调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div></pre></td></tr></table></figure>
+<p>以下就是 <code>path</code> 提供的一些功能函数：</p>
+<ul>
+<li>Windows 与 POSIX</li>
+<li>path.basename(path[, ext]) —— 获取文件名</li>
+<li>path.delimiter            ——　获取路径分隔符</li>
+<li>path.dirname(path) —— 获取文件所在的目录名称</li>
+<li>path.extname(path) —— 返回文件的扩展名</li>
+<li>path.format(pathObject) —— 将一个对象转换为一个路径字符串</li>
+<li>path.isAbsolute(path) —— 检测 <code>path</code> 是否是一个绝对路径</li>
+<li>path.join([…paths]) —— 组合路径</li>
+<li>path.normalize(path)</li>
+<li>path.parse(path)</li>
+<li>path.posix</li>
+<li>path.relative(from, to)</li>
+<li>path.resolve([…paths])</li>
+<li>path.sep</li>
+<li>path.toNamespacedPath(path)</li>
+<li>path.win32</li>
+</ul>
+<h2 id="1-Windows-与-POSIX"><a href="#1-Windows-与-POSIX" class="headerlink" title="1. Windows 与 POSIX"></a>1. Windows 与 POSIX</h2><p><code>path</code> 模块的默认操作会根据 <code>Node.js</code> 应用程序的操作系统的不同而变化。所以：</p>
+<p>当运行在 <code>Windows</code> 系统上时， <code>path</code> 模块会认为使用的是 <code>Windows</code> 风格的路径。</p>
+<p>当运行在 <code>POSIX</code> 系统上时， <code>path</code> 模块会认为使用的是 <code>POSIX</code> 风格的路径。</p>
+<p>在 <strong>POSIX</strong> 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">path.basename(<span class="string">'C:\\eiiizong\\jd.html'</span>);</div><div class="line"><span class="comment">//返回：'C:\\eiiizong\\jd.html'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'C:\eiiizong\jd.html'</span>);</div><div class="line"><span class="comment">//返回：'C:eiiizongjd.html'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>);</div><div class="line"><span class="comment">//返回：'jd.html'</span></div></pre></td></tr></table></figure>
+<p>在 <strong>Windows</strong> 上：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">path.basename(<span class="string">'C:\\eiiizong\\jd.html'</span>);</div><div class="line"><span class="comment">//返回：'jd.html'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'C:\eiiizong\jd.html'</span>);</div><div class="line"><span class="comment">//返回：'eiiizongjd.html'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>);</div><div class="line"><span class="comment">//返回：'jd.html'</span></div></pre></td></tr></table></figure></p>
+<p>要想在任何操作系统上使用 <code>Windows</code> 文件路径时获得一致的结果，可以使用 <code>path.win32</code>：</p>
+<p>在 <strong>Windows</strong> 和 <strong>POSIX</strong> 上：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">path.win32.basename(<span class="string">'C:\\eiiizong\\jd.html'</span>);</div><div class="line"></div><div class="line"><span class="comment">//返回：'jd.html'</span></div></pre></td></tr></table></figure></p>
+<p>要想在任何操作系统上使用 <code>POSIX</code> 文件路径时获得一致的结果，可以使用 <code>path.posix</code>：</p>
+<p>在 <strong>Windows</strong> 和 <strong>POSIX</strong> 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">path.posix.basename(<span class="string">'C:\\eiiizong\\jd.html'</span>);</div><div class="line"></div><div class="line"><span class="comment">//返回：'C:\\eiiizong\\jd.html'</span></div><div class="line"></div><div class="line">path.posix.basename(<span class="string">'/eiiizong/jd.html'</span>);</div><div class="line"></div><div class="line"><span class="comment">//返回： 'jd.html'</span></div></pre></td></tr></table></figure>
+<h2 id="2-path-basename-path-ext-——-获取文件名"><a href="#2-path-basename-path-ext-——-获取文件名" class="headerlink" title="2. path.basename(path[, ext])　—— 获取文件名"></a>2. path.basename(path[, ext])　—— 获取文件名</h2><ul>
+<li><code>path</code> <code>&lt;string&gt;</code></li>
+<li><code>ext</code> <code>&lt;string&gt;</code> <code>[可选]</code> 文件扩展名</li>
+<li><strong>返回</strong>: <code>&lt;string&gt;</code></li>
+</ul>
+<p><code>path.basename()</code> 方法返回整个路径中的最后一部分，即<strong>返回文件名，包括该文件的扩展名（如果第二个参数为空）</strong>。</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>, <span class="string">'html'</span>);</div><div class="line"><span class="comment">//返回： 'jd.'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>, <span class="string">'.tml'</span>);</div><div class="line"><span class="comment">//返回： 'jd'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>, <span class="string">'.js'</span>);</div><div class="line"><span class="comment">//返回： 'jd.html'</span></div><div class="line"></div><div class="line">path.basename(<span class="string">'/eiiizong/jd.html'</span>, <span class="number">520</span>);</div><div class="line"><span class="comment">// TypeError [ERR_INVALID_ARG_TYPE]: The "ext" argument must be of type string. Received type number at...</span></div></pre></td></tr></table></figure>
+<p>如果参数 <code>path</code> 不是 <code>string</code> 或提供了参数 <code>ext</code> 也不是 <code>string</code>，则抛出 <code>TypeError</code>。</p>
+<p>如果参数 <code>ext</code> 是 <code>string</code> 但不匹配，则相当于没有传入该参数。</p>
+<h2 id="3-path-delimiter-——-获取路径分隔符"><a href="#3-path-delimiter-——-获取路径分隔符" class="headerlink" title="3. path.delimiter —— 获取路径分隔符"></a>3. path.delimiter —— 获取路径分隔符</h2><ul>
+<li><code>&lt;string&gt;</code></li>
+</ul>
+<p><code>path.delimiter</code> 属性获取不同操作系统特定的<strong>路径分隔符</strong>：</p>
+<ul>
+<li>Windows 上是  <code>;</code></li>
+<li>POSIX 上是  <code>:</code></li>
+</ul>
+<h2 id="4-path-dirname-path-——-获取文件所在的目录名称"><a href="#4-path-dirname-path-——-获取文件所在的目录名称" class="headerlink" title="4. path.dirname(path) —— 获取文件所在的目录名称"></a>4. path.dirname(path) —— 获取文件所在的目录名称</h2><ul>
+<li><code>path</code> <code>&lt;string&gt;</code></li>
+<li><strong>返回</strong>： <code>&lt;string&gt;</code></li>
+</ul>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.dirname(<span class="string">'/eiiizong/jd.html'</span>);</div><div class="line"><span class="comment">// 返回：'/eiiizong'</span></div></pre></td></tr></table></figure>
+<p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
+<h2 id="5-path-extname-path-——-返回文件的扩展名"><a href="#5-path-extname-path-——-返回文件的扩展名" class="headerlink" title="5. path.extname(path) —— 返回文件的扩展名"></a>5. path.extname(path) —— 返回文件的扩展名</h2><ul>
+<li><code>path</code> <string></string></li>
+<li><strong>返回</strong>： <string></string></li>
+</ul>
+<p><code>path.extname()</code> 方法返回 <code>path</code> 的扩展名，即从 <code>path</code> 的最后一部分中的最后一个 <code>.</code>（句号）字符到字符串结束。 <strong>如果 <code>path</code> 的最后一部分没有 <code>.</code> 或 <code>path</code> 的文件名的第一个字符是 <code>.</code>，则返回一个空字符串。</strong></p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">path.extname(<span class="string">'jd.html'</span>);</div><div class="line"><span class="comment">//返回: '.html'</span></div><div class="line"></div><div class="line">path.extname(<span class="string">'jd.'</span>);</div><div class="line"><span class="comment">//返回: '.'</span></div><div class="line"></div><div class="line">path.extname(<span class="string">'jd'</span>);</div><div class="line"><span class="comment">//返回: ''</span></div><div class="line"></div><div class="line">path.extname(<span class="string">'.jd'</span>);</div><div class="line"><span class="comment">//返回: ''</span></div></pre></td></tr></table></figure>
+<p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
+<h2 id="6-path-format-pathObject-——-将一个对象转换为一个路径字符串"><a href="#6-path-format-pathObject-——-将一个对象转换为一个路径字符串" class="headerlink" title="6. path.format(pathObject) —— 将一个对象转换为一个路径字符串"></a>6. path.format(pathObject) —— 将一个对象转换为一个路径字符串</h2><ul>
+<li><code>pathObject</code> <code>&lt;Object&gt;</code><ul>
+<li><code>dir</code> <code>&lt;string&gt;</code></li>
+<li><code>root</code> <code>&lt;string&gt;</code></li>
+<li><code>base</code> <code>&lt;string&gt;</code></li>
+<li><code>name</code> <code>&lt;string&gt;</code></li>
+<li><code>ext</code>  <code>&lt;string&gt;</code></li>
+</ul>
+</li>
+<li><strong>返回</strong>: <code>&lt;string&gt;</code></li>
+</ul>
+<p><code>path.format()</code> 方法会从一个对象返回一个路径字符串。 与 <code>path.parse()</code> 相反。</p>
+<h2 id="7-path-isAbsolute-path-——-检测-path-是否为一个绝对路径"><a href="#7-path-isAbsolute-path-——-检测-path-是否为一个绝对路径" class="headerlink" title="7. path.isAbsolute(path) —— 检测 path 是否为一个绝对路径"></a>7. path.isAbsolute(path) —— 检测 path 是否为一个绝对路径</h2><ul>
+<li><code>path</code>  <code>&lt;string&gt;</code></li>
+<li><strong>返回</strong>： <code>&lt;boolean&gt;</code></li>
+</ul>
+<p><code>path.isAbsolute()</code> 方法会判定 <code>path</code> 是否为一个<strong>绝对路径</strong>。</p>
+<p>如果给定的 <code>path</code> 是一个长度为零的字符串，则返回 <code>false</code>。</p>
+<p>例如在 POSIX 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">path.isAbsolute(<span class="string">'/eiiizong/jd'</span>); </div><div class="line"><span class="comment">// 返回：'true'</span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'/eiiizong/..'</span>); </div><div class="line"><span class="comment">// 返回：'true'</span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'eiiizong/'</span>); </div><div class="line"><span class="comment">// 返回：'false'</span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'.'</span>); </div><div class="line"><span class="comment">// 返回：'false'</span></div></pre></td></tr></table></figure>
+<p>在 POSIX 上只要以 <code>/</code> 开始的路径一般都是 <code>true</code>, 否则就为 <code>false</code>。</p>
+<p>在 Windows 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//以 C： 这样的开头的字符串都是绝对路径 </span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'C:/eiiizong/..'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'C:\\eiiizong\\..'</span>); <span class="comment">// true</span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'eiiizong\\jd'</span>); <span class="comment">// false</span></div><div class="line">path.isAbsolute(<span class="string">'eiiizong/jd'</span>); <span class="comment">// false</span></div><div class="line">path.isAbsolute(<span class="string">'eiiizong./jd'</span>); <span class="comment">// false</span></div><div class="line"></div><div class="line"><span class="comment">//以 /  、 \\ 和 // 开始的路径也是绝对路径</span></div><div class="line">path.isAbsolute(<span class="string">'/eiiizong'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'./eiiizong'</span>); <span class="comment">// false</span></div><div class="line">path.isAbsolute(<span class="string">'//eiiizong'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'\\\\eiiizong'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'\\\eiiizong'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'\\eiiizong'</span>); <span class="comment">// true</span></div><div class="line">path.isAbsolute(<span class="string">'\eiiizong'</span>); <span class="comment">// false</span></div><div class="line"></div><div class="line">path.isAbsolute(<span class="string">'.'</span>); <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
+<h2 id="8-path-join-…paths-——-拼接路径"><a href="#8-path-join-…paths-——-拼接路径" class="headerlink" title="8. path.join([…paths]) —— 拼接路径"></a>8. path.join([…paths]) —— 拼接路径</h2><ul>
+<li><code>...paths</code> <code>&lt;string&gt;</code> 路径片段的序列</li>
+<li><strong>返回</strong>： <code>&lt;string&gt;</code></li>
+</ul>
+<p><code>path.join()</code> 方法使用平台特定的分隔符把全部给定的 <code>path</code> 片段连接到一起，并规范化生成的路径。</p>
+<p>长度为零的 <code>path</code> 片段会被忽略。 如果连接后的路径字符串是一个长度为零的字符串，则返回 ‘.’，表示当前工作目录。</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">path.join(<span class="string">'/eiiizong'</span>, <span class="string">'jd'</span>, <span class="string">'/520.html'</span>);</div><div class="line"><span class="comment">// 返回： '\\eiiizong\\jd\\520.html'</span></div><div class="line"></div><div class="line">path.join(<span class="string">'/eiiizong'</span>, <span class="string">'./jd'</span>, <span class="string">'/520.html'</span>);</div><div class="line"><span class="comment">// 返回： '\\eiiizong\\jd\\520.html'</span></div><div class="line"></div><div class="line">path.join(<span class="string">'/eiiizong'</span>, <span class="string">'../jd'</span>, <span class="string">'/520.html'</span>);</div><div class="line"><span class="comment">// 返回： '\\jd\\520.html'</span></div></pre></td></tr></table></figure>
+<p>如果任一路径片段不是一个字符串，则抛出 <code>TypeError</code>。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.join(<span class="string">'/eiiizong'</span>, <span class="string">'../jd'</span>, <span class="number">520</span>);</div><div class="line"><span class="comment">// TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received type number at...</span></div></pre></td></tr></table></figure>
+<h2 id="9-path-normalize-path-——-规范化给定的-path"><a href="#9-path-normalize-path-——-规范化给定的-path" class="headerlink" title="9. path.normalize(path) —— 规范化给定的 path"></a>9. path.normalize(path) —— 规范化给定的 path</h2><ul>
+<li><code>path</code> <string></string></li>
+<li><strong>返回</strong>： <string></string></li>
+</ul>
+<p><code>path.normalize()</code> 方法会规范化给定的 <code>path</code>，并解析 <code>&#39;..&#39;</code> 和 <code>&#39;.&#39;</code> 片段。</p>
+<p>当发现多个连续的路径分隔符时（如 <code>POSIX</code> 上的 <code>/</code> 与 <code>Windows</code> 上的 <code>\</code> 或 <code>/</code>），它们会被单个的路径分隔符（<code>POSIX</code> 上是 <code>/</code>，<code>Windows</code> 上是 <code>\</code>）替换。 末尾的多个分隔符会被保留。</p>
+<p>如果 <code>path</code> 是一个长度为零的字符串，则返回 <code>&#39;.&#39;</code>，表示当前工作目录。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">path.normalize(<span class="string">'c:/eiiizong\\jd//520////html'</span>);</div><div class="line"><span class="comment">// 返回： 'c:\\eiiizong\\jd\\520\\html'</span></div><div class="line"></div><div class="line">path.normalize(<span class="string">'c:/eiiizong\\jd//520////html\\//'</span>);</div><div class="line"><span class="comment">// 返回： 'c:\\eiiizong\\jd\\520\\html\\'</span></div></pre></td></tr></table></figure>
+<p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
+<h2 id="10-path-parse-path-——-将一个路径字符串转换为一个对象"><a href="#10-path-parse-path-——-将一个路径字符串转换为一个对象" class="headerlink" title="10. path.parse(path) —— 将一个路径字符串转换为一个对象"></a>10. path.parse(path) —— 将一个路径字符串转换为一个对象</h2><p><code>path.parse(path)</code> 方法返回一个对象。</p>
+<ul>
+<li><code>path</code> <code>&lt;string&gt;</code></li>
+<li><strong>返回</strong>： <code>&lt;Object&gt;</code></li>
+</ul>
+<p>返回的对象具有以下属性：</p>
+<ul>
+<li><code>dir</code> <code>&lt;string&gt;</code></li>
+<li><code>root</code> <code>&lt;string&gt;</code></li>
+<li><code>base</code> <code>&lt;string&gt;</code></li>
+<li><code>name</code> <code>&lt;string&gt;</code></li>
+<li><code>ext</code> <code>&lt;string&gt;</code></li>
+</ul>
+<p>例如： </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">path.parse(<span class="string">'/eiiizong/jd/520.html'</span>);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">返回： </span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">&#123; </span></div><div class="line"><span class="comment">  root: '/',</span></div><div class="line"><span class="comment">  dir: '/eiiizong/jd',</span></div><div class="line"><span class="comment">  base: '520.html',</span></div><div class="line"><span class="comment">  ext: '.html',</span></div><div class="line"><span class="comment">  name: '520' </span></div><div class="line"><span class="comment">&#125;</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
+<h2 id="11-path-posix"><a href="#11-path-posix" class="headerlink" title="11. path.posix"></a>11. path.posix</h2><ul>
+<li><object>
+
+</object></li>
+</ul>
+<p><code>path.posix</code> 属性提供对 <code>path</code> 方法的 <code>POSIX</code> 特定实现的访问。</p>
+<h2 id="12-path-relative-from-to-——-返回从-from-到-to-的相对路径"><a href="#12-path-relative-from-to-——-返回从-from-到-to-的相对路径" class="headerlink" title="12. path.relative(from, to) —— 返回从 from 到 to 的相对路径"></a>12. path.relative(from, to) —— 返回从 from 到 to 的相对路径</h2><ul>
+<li><code>from</code> <code>&lt;string&gt;</code></li>
+<li><code>to</code> <code>&lt;string&gt;</code></li>
+<li><strong>返回</strong>：<code>&lt;string&gt;</code></li>
+</ul>
+<h2 id="13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径"><a href="#13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径" class="headerlink" title="13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径"></a>13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径</h2><h2 id="14-path-sep-——-提供了平台特定的路径片段分隔符"><a href="#14-path-sep-——-提供了平台特定的路径片段分隔符" class="headerlink" title="14. path.sep —— 提供了平台特定的路径片段分隔符"></a>14. path.sep —— 提供了平台特定的路径片段分隔符</h2><ul>
+<li><string>
+
+</string></li>
+</ul>
+<p>提供了平台特定的路径片段分隔符：</p>
+<ul>
+<li>Windows 上是 <code>\</code></li>
+<li>POSIX 上是 <code>/</code></li>
+</ul>
+<p>例如，在 POSIX 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'foo/bar/baz'</span>.split(path.sep));<span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
+<p>在 Windows 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'foo\\bar\\baz'</span>.split(path.sep));<span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：在 Windows 上，斜杠字符（<code>/</code>）和反斜杠字符（<code>\</code>）都可作为路径分隔符； 但 <code>path</code> 的方法只添加反斜杠（<code>\</code>）(<strong><code>\\</code> 中的第一个  <code>\</code> 是相当于转义符</strong>)。</p>
+<h2 id="15-path-toNamespacedPath-path"><a href="#15-path-toNamespacedPath-path" class="headerlink" title="15. path.toNamespacedPath(path)"></a>15. path.toNamespacedPath(path)</h2><p>仅在 <code>Windows</code> 系统上，返回给定 <code>path</code> 的等效名称空间前缀路径。</p>
+<h2 id="15-path-win32"><a href="#15-path-win32" class="headerlink" title="15. path.win32"></a>15. path.win32</h2><ul>
+<li><code>&lt;object&gt;</code></li>
+</ul>
+<p><code>path.win32</code> 属性提供对特定于 <code>Windows</code> 的 <code>path</code> 方法的实现的访问。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;path&quot;&gt;&lt;a href=&quot;#path&quot; class=&quot;headerlink&quot; title=&quot;path&quot;&gt;&lt;/a&gt;path&lt;/h2&gt;&lt;p&gt;&lt;code&gt;path&lt;/code&gt; 模块提供了一些用于处理文件路径和目录路径的工具函数。使用之前要通过以下方式调用：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="node" scheme="http://yoursite.com/categories/node/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AJAX</title>
+    <link href="http://yoursite.com/2019/02/28/AJAX/"/>
+    <id>http://yoursite.com/2019/02/28/AJAX/</id>
+    <published>2019-02-28T08:06:20.000Z</published>
+    <updated>2019-03-05T09:16:10.824Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>AJAX</code> 即 <code>Asynchronous Javascript And XML (异步 JavaScript 和 XML)</code>。是指一种创建交互式网页应用的网页开发技术。</p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 适用(兼容)于 IE7 之前的版本</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createXHR</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">'string'</span>) &#123;</div><div class="line">		<span class="keyword">var</span> versions = [<span class="string">'MSXML2.XMLHttp.6.0'</span>, <span class="string">'MSXML2.XMLHttp.3.0'</span>, <span class="string">'MSXML2.XMLHttp'</span>],</div><div class="line">			i, len;</div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">				<span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">				<span class="comment">// 跳过</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一个get请求数据的完整代码</span></div><div class="line"><span class="keyword">var</span> createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">'undefined'</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">'string'</span>) &#123;</div><div class="line">		<span class="keyword">var</span> versions = [<span class="string">'MSXML2.XMLHttp.6.0'</span>, <span class="string">'MSXML2.XMLHttp.3.0'</span>, <span class="string">'MSXML2.XMLHttp'</span>],</div><div class="line">			i, len;</div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">				<span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">				<span class="comment">// 跳过</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'没有可获取的 XHR 对象'</span>);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> xhr = createXHR();</div><div class="line"><span class="keyword">var</span> url = <span class="string">'https://api.bzqll.com/music/netease/search?key=579621905&amp;s=%E6%88%91%E5%96%9C%E6%AC%A2%E4%B8%8A%E4%BD%A0%E5%86%85%E5%BF%83%E6%97%B6%E7%9A%84%E6%B4%BB%E5%8A%A8&amp;type=song&amp;limit=100&amp;offset=0'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 必须写在 send()方法的前面</span></div><div class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(xhr.readyState);</div><div class="line">	<span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</div><div class="line">		<span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</div><div class="line">			<span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(xhr.responseText);</div><div class="line">			<span class="built_in">console</span>.log(xhr);</div><div class="line">			<span class="built_in">console</span>.log(data);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Request was unsuccessful: '</span> + xhr.status);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 启动一个请求 以备发送</span></div><div class="line"><span class="comment">// false 同步请求 true 异步请求</span></div><div class="line">xhr.open(<span class="string">'get'</span>, url, <span class="literal">false</span>);</div><div class="line"><span class="comment">// 发送请求</span></div><div class="line">xhr.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
+<h2 id="惰性载入"><a href="#惰性载入" class="headerlink" title="惰性载入"></a>惰性载入</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 惰性载入函数-第一种</span></div><div class="line"><span class="keyword">var</span> createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">'undefined'</span>) &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">		&#125;;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXObject != <span class="string">'undefined'</span>) &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">'string'</span>) &#123;</div><div class="line">				<span class="keyword">var</span> versions = [<span class="string">'MSXML2.XMLHttp.6.0'</span>, <span class="string">'MSXML2.XMLHttp.3.0'</span>, <span class="string">'MSXML2.XMLHttp'</span>],</div><div class="line">					i, len;</div><div class="line">				<span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						<span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">						<span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">						<span class="keyword">break</span>;</div><div class="line">					&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">						<span class="comment">// 跳过</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'No XHR object available.'</span>);</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> createXHR();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>或者 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 惰性载入函数-第二种</span></div><div class="line"><span class="keyword">var</span> createXHR = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">'undefined'</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">		&#125;;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXObject != <span class="string">'undefined'</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">'string'</span>) &#123;</div><div class="line">				<span class="keyword">var</span> versions = [<span class="string">'MSXML2.XMLHttp.6.0'</span>, <span class="string">'MSXML2.XMLHttp.3.0'</span>, <span class="string">'MSXML2.XMLHttp'</span>],</div><div class="line">					i, len;</div><div class="line">				<span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						<span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">						<span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">						<span class="keyword">break</span>;</div><div class="line">					&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">						<span class="comment">// 跳过</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'No XHR object available.'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">'undefined'</span>) &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">		&#125;;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXObject != <span class="string">'undefined'</span>) &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">'string'</span>) &#123;</div><div class="line">				<span class="keyword">var</span> versions = [<span class="string">'MSXML2.XMLHttp.6.0'</span>, <span class="string">'MSXML2.XMLHttp.3.0'</span>, <span class="string">'MSXML2.XMLHttp'</span>],</div><div class="line">					i, len;</div><div class="line">				<span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						<span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">						<span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">						<span class="keyword">break</span>;</div><div class="line">					&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">						<span class="comment">// 跳过</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'No XHR object available.'</span>);</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> createXHR();</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> getData = <span class="function"><span class="keyword">function</span>(<span class="params">url, isAsyc</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> xhr = createXHR();</div><div class="line">	<span class="comment">// 必须写在 send()方法的前面</span></div><div class="line">	xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</div><div class="line">			<span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</div><div class="line">				<span class="keyword">var</span> res = <span class="built_in">JSON</span>.parse(xhr.responseText);</div><div class="line">				<span class="built_in">console</span>.log(res);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Request was unsuccessful: '</span> + xhr.status);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">// 启动一个请求 以备发送</span></div><div class="line">	xhr.open(<span class="string">'get'</span>, url, isAsyc);</div><div class="line">	<span class="comment">// 发送请求</span></div><div class="line">	xhr.send(<span class="literal">null</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> url = <span class="string">'https://api.bzqll.com/music/netease/search?key=579621905&amp;s=%E6%88%91%E5%96%9C%E6%AC%A2%E4%B8%8A%E4%BD%A0%E5%86%85%E5%BF%83%E6%97%B6%E7%9A%84%E6%B4%BB%E5%8A%A8&amp;type=song&amp;limit=100&amp;offset=0'</span>;</div><div class="line"><span class="keyword">var</span> data = getData(url, <span class="literal">true</span>);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;AJAX&lt;/code&gt; 即 &lt;code&gt;Asynchronous Javascript And XML (异步 JavaScript 和 XML)&lt;/code&gt;。是指一种创建交互式网页应用的网页开发技术。&lt;/p&gt;
+&lt;h2 id=&quot;AJAX&quot;&gt;&lt;a href=&quot;#AJAX&quot; class=&quot;headerlink&quot; title=&quot;AJAX&quot;&gt;&lt;/a&gt;AJAX&lt;/h2&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 适用(兼容)于 IE7 之前的版本&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;createXHR&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;arguments&lt;/span&gt;.callee.activeXString != &lt;span class=&quot;string&quot;&gt;&#39;string&#39;&lt;/span&gt;) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; versions = [&lt;span class=&quot;string&quot;&gt;&#39;MSXML2.XMLHttp.6.0&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;MSXML2.XMLHttp.3.0&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;MSXML2.XMLHttp&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			i, len;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, len = versions.length; i &amp;lt; len; i++) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ActiveXObject(versions[i]);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&lt;span class=&quot;built_in&quot;&gt;arguments&lt;/span&gt;.callee.activeXString = versions[i];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (ex) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				&lt;span class=&quot;comment&quot;&gt;// 跳过&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ActiveXObject(&lt;span class=&quot;built_in&quot;&gt;arguments&lt;/span&gt;.callee.activeXString);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>设计模式</title>
     <link href="http://yoursite.com/2019/02/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/02/20/设计模式/</id>
-    <published>2019-02-20T03:15:01.000Z</published>
-    <updated>2019-02-20T08:59:48.443Z</updated>
+    <published>2019-02-20T03:15:20.000Z</published>
+    <updated>2019-03-05T09:11:50.040Z</updated>
     
     <content type="html"><![CDATA[<p>······开此贴主要记录学习《JavaScript设计模式与开发实践》······</p>
-<a id="more"></a>]]></content>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><a id="more"></a>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;······开此贴主要记录学习《JavaScript设计模式与开发实践》······&lt;/p&gt;
+&lt;h2 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h2&gt;
     
     </summary>
     
       <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   
@@ -43,7 +254,7 @@
     <link href="http://yoursite.com/2018/01/27/%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7/"/>
     <id>http://yoursite.com/2018/01/27/数组的方法和属性/</id>
     <published>2018-01-27T12:59:45.000Z</published>
-    <updated>2018-07-07T09:12:22.804Z</updated>
+    <updated>2019-03-05T09:11:09.807Z</updated>
     
     <content type="html"><![CDATA[<h1 id="ES5-中定义的属性和方法"><a href="#ES5-中定义的属性和方法" class="headerlink" title="ES5 中定义的属性和方法"></a>ES5 中定义的属性和方法</h1><p>个人对数组的一些方法和属性做出的一些总结。</p>
 <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="1-length"><a href="#1-length" class="headerlink" title="1. length"></a>1. length</h3><p>该属性返回数组的长度。例如：</p>
@@ -199,6 +410,8 @@
       <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
     
     
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
   </entry>
@@ -208,7 +421,7 @@
     <link href="http://yoursite.com/2017/09/27/JS%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/09/27/JS创建对象的几种方式/</id>
     <published>2017-09-27T05:29:48.000Z</published>
-    <updated>2017-10-15T14:03:54.621Z</updated>
+    <updated>2019-03-05T09:08:48.307Z</updated>
     
     <content type="html"><![CDATA[<p>虽然<code>Object构造函数</code>或<code>对象字面量</code>都可以用创建<strong>单个</strong>对象。 但是这两个方式都有明显的缺点：<strong>使用同一个接口创建多个对象时，会产生很多的重复的代码。</strong>所以引入了 <code>工厂模式</code> 解决这种问题。</p>
 <h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1 工厂模式"></a>1 工厂模式</h2><p>工厂模式是一种设计模式，这种模式抽象了创建具体对象的过程。因为ECMAScript中无法创建<strong>类</strong>，所以开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。如下例所示：</p>
@@ -336,23 +549,19 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     
     </summary>
     
-      <category term="面向对象" scheme="http://yoursite.com/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
     
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
-      <category term="创建对象" scheme="http://yoursite.com/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="面向对象编程" scheme="http://yoursite.com/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"/>
-    
   </entry>
   
   <entry>
-    <title>JQuery 选择器一览表</title>
-    <link href="http://yoursite.com/2017/08/28/JQuery-%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%80%E8%A7%88%E8%A1%A8/"/>
-    <id>http://yoursite.com/2017/08/28/JQuery-选择器一览表/</id>
+    <title>jQuery 选择器一览表</title>
+    <link href="http://yoursite.com/2017/08/28/jQuery%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%80%E8%A7%88%E8%A1%A8/"/>
+    <id>http://yoursite.com/2017/08/28/jQuery选择器一览表/</id>
     <published>2017-08-28T05:42:11.000Z</published>
-    <updated>2018-07-08T10:38:25.132Z</updated>
+    <updated>2019-03-05T09:09:21.774Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
 <thead>
@@ -706,10 +915,10 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     
     </summary>
     
-      <category term="JQuery" scheme="http://yoursite.com/categories/JQuery/"/>
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
     
     
-      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
     
   </entry>
   
@@ -718,7 +927,7 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     <link href="http://yoursite.com/2017/08/25/%E8%A1%A8%E6%A0%BC%E5%8F%98%E8%89%B2/"/>
     <id>http://yoursite.com/2017/08/25/表格变色/</id>
     <published>2017-08-25T06:02:15.000Z</published>
-    <updated>2017-08-27T05:25:55.327Z</updated>
+    <updated>2019-03-05T09:10:24.830Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1-表格隔行变色"><a href="#1-表格隔行变色" class="headerlink" title="1 表格隔行变色"></a>1 表格隔行变色</h1><p>文档加载完毕，表格的就实现了隔行变色。其效果如下图所示：</p>
 <p><img src="http://oupo5zwub.bkt.clouddn.com/blog/170825/3kk95cABaF.png?imageslim" alt="mark"></p>
@@ -851,23 +1060,21 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     
     </summary>
     
-      <category term="一些你可能会用到的小实例" scheme="http://yoursite.com/categories/%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84%E5%B0%8F%E5%AE%9E%E4%BE%8B/"/>
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
     
-    
-      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
-      <category term="table" scheme="http://yoursite.com/tags/table/"/>
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
     
   </entry>
   
   <entry>
-    <title>JQuery 小示例及讲解</title>
-    <link href="http://yoursite.com/2017/08/24/JQuery-%E5%B0%8F%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%AE%B2%E8%A7%A3/"/>
-    <id>http://yoursite.com/2017/08/24/JQuery-小示例及讲解/</id>
+    <title>jQuery 小示例及讲解</title>
+    <link href="http://yoursite.com/2017/08/24/jQuery%E5%B0%8F%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%AE%B2%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/24/jQuery小示例及讲解/</id>
     <published>2017-08-24T09:32:18.000Z</published>
-    <updated>2017-08-27T05:37:14.609Z</updated>
+    <updated>2019-03-05T09:09:29.120Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1-第一个简单的JQuery程序"><a href="#1-第一个简单的JQuery程序" class="headerlink" title="1 第一个简单的JQuery程序"></a>1 第一个简单的JQuery程序</h1><p>其代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">		&lt;title&gt;第一个简单的JQuery程序&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">		&lt;script src="script/</span>jquery<span class="number">-3.2</span><span class="number">.1</span>.js<span class="string">"&gt;&lt;/script&gt;</span></div><div class="line"><span class="string">		&lt;script&gt;</span></div><div class="line"><span class="string">			$(document).ready(function()&#123;</span></div><div class="line"><span class="string">				alert("</span>Hello,welcome to JQuery world!<span class="string">")</span></div><div class="line"><span class="string">			&#125;)</span></div><div class="line"><span class="string">		&lt;/script&gt;</span></div><div class="line"><span class="string">	&lt;/head&gt;</span></div><div class="line"><span class="string">	&lt;body&gt;</span></div><div class="line"><span class="string">	&lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
@@ -906,19 +1113,19 @@ alert(Object.getPrototypeOf(people1).name);//Eiiizong
     
     </summary>
     
-      <category term="JQuery" scheme="http://yoursite.com/categories/JQuery/"/>
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
     
     
-      <category term="JQuery" scheme="http://yoursite.com/tags/JQuery/"/>
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
     
   </entry>
   
   <entry>
     <title>ECMAScript 基本概念</title>
-    <link href="http://yoursite.com/2017/08/21/ECMAScript-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <id>http://yoursite.com/2017/08/21/ECMAScript-基本概念/</id>
+    <link href="http://yoursite.com/2017/08/21/ECMAScript%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <id>http://yoursite.com/2017/08/21/ECMAScript基本概念/</id>
     <published>2017-08-21T10:20:07.000Z</published>
-    <updated>2017-08-27T08:40:47.127Z</updated>
+    <updated>2019-03-05T09:08:30.047Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1-语法"><a href="#1-语法" class="headerlink" title="1 语法"></a>1 语法</h1><h2 id="1-1-区分大小写"><a href="#1-1-区分大小写" class="headerlink" title="1.1 区分大小写"></a>1.1 区分大小写</h2><p>  ECMAScript中的一切（包括 <strong>变量</strong> ，<strong>函数名</strong> ，<strong>操作符</strong> ）都区分大小写。即意味着test与Test、tEst分别表示不同的变量。</p>
 <h2 id="1-2-标识符"><a href="#1-2-标识符" class="headerlink" title="1.2 标识符"></a>1.2 标识符</h2><p>所谓标识符就是指变量，函数，属性的名字，或者函数的参数。<br>标识符按照以下规则组合：</p>
@@ -1506,7 +1713,7 @@ alert（typeof names）； //警告框显示：object
       <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
     
     
-      <category term="ECMAScript" scheme="http://yoursite.com/tags/ECMAScript/"/>
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   
@@ -1515,7 +1722,7 @@ alert（typeof names）； //警告框显示：object
     <link href="http://yoursite.com/2017/08/16/CSS3-%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yoursite.com/2017/08/16/CSS3-动画的实现/</id>
     <published>2017-08-16T06:35:51.000Z</published>
-    <updated>2017-08-27T08:41:53.832Z</updated>
+    <updated>2019-03-05T09:08:14.711Z</updated>
     
     <content type="html"><![CDATA[<p>······直接进入主题······</p>
 <h1 id="1-简单动画"><a href="#1-简单动画" class="headerlink" title="1 简单动画"></a>1 简单动画</h1><h2 id="1-1-大小变化"><a href="#1-1-大小变化" class="headerlink" title="1-1 大小变化"></a>1-1 大小变化</h2><p>效果图如下：</p>
@@ -1745,10 +1952,6 @@ alert（typeof names）； //警告框显示：object
     
     
       <category term="CSS3" scheme="http://yoursite.com/tags/CSS3/"/>
-    
-      <category term="transform" scheme="http://yoursite.com/tags/transform/"/>
-    
-      <category term="hover" scheme="http://yoursite.com/tags/hover/"/>
     
   </entry>
   

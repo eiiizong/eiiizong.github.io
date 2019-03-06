@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-05T10:43:29.461Z</updated>
+  <updated>2019-03-06T09:07:58.105Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,58 @@
   
   <entry>
     <title>node-path</title>
+    <link href="http://yoursite.com/2019/03/06/node-fs/"/>
+    <id>http://yoursite.com/2019/03/06/node-fs/</id>
+    <published>2019-03-06T08:44:20.000Z</published>
+    <updated>2019-03-06T09:07:58.105Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="fs-文件系统"><a href="#fs-文件系统" class="headerlink" title="fs - 文件系统"></a>fs - 文件系统</h2><p><code>fs</code> 模块提供了一个API， 用于以模仿 POSIX 函数的方式与文件系统进行交互。使用之前要通过以下方式调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div></pre></td></tr></table></figure>
+<p>所有文件系统操作都具有同步和异步</p>
+<p>异步的形式总是将<strong>完成回调（函数）</strong>作为最后一个参数。</p>
+<p>完成回调（函数）的<strong>第一个参数始终预留用于处理异常</strong>， 如果没有异常发生， 则第一个参数将为 <code>null</code> 或 <code>undefined</code> 。</p>
+<a id="more"></a>
+<h2 id="fs-stat-path-option-callback"><a href="#fs-stat-path-option-callback" class="headerlink" title="fs.stat(path [, option], callback)"></a>fs.stat(path [, option], callback)</h2><ul>
+<li><label style="color:red">path<label>     <code>&lt;String&gt;</code> | <code>&lt;Buffer&gt;</code> | <code>&lt;URL&gt;</code></label></label></li>
+<li><label style="color:red">option<label>  <code>&lt;Object&gt;</code><ul>
+<li><code>bigint</code>  返回 <code>fs.Stats</code> 对象中的数组是否应为 <code>bigint</code> 型。 默认值：<code>false</code> 。</li>
+</ul>
+</label></label></li>
+<li><label style="color:red">callback<label>     <code>&lt;Function&gt;</code> <ul>
+<li><code>err</code>  <code>&lt;Error&gt;</code></li>
+<li><code>stats</code>  <code>&lt;fs.Stats&gt;</code></li>
+</ul>
+</label></label></li>
+</ul>
+<p>不建议在调用 <code>fs.open()</code> 、<code>fs.readFile()</code> 或 <code>fs.writeFile()</code> 之前使用 <code>fs.stat()</code> 检查文件是否存在。 而是应该直接打开、读取或写入文件，如果文件不可用则处理引发的错误。</p>
+<p>要检查文件是否存在但随后并不对其进行操作，则建议使用 <code>fs.access()</code>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;fs-文件系统&quot;&gt;&lt;a href=&quot;#fs-文件系统&quot; class=&quot;headerlink&quot; title=&quot;fs - 文件系统&quot;&gt;&lt;/a&gt;fs - 文件系统&lt;/h2&gt;&lt;p&gt;&lt;code&gt;fs&lt;/code&gt; 模块提供了一个API， 用于以模仿 POSIX 函数的方式与文件系统进行交互。使用之前要通过以下方式调用：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; fs = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;fs&#39;&lt;/span&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;所有文件系统操作都具有同步和异步&lt;/p&gt;
+&lt;p&gt;异步的形式总是将&lt;strong&gt;完成回调（函数）&lt;/strong&gt;作为最后一个参数。&lt;/p&gt;
+&lt;p&gt;完成回调（函数）的&lt;strong&gt;第一个参数始终预留用于处理异常&lt;/strong&gt;， 如果没有异常发生， 则第一个参数将为 &lt;code&gt;null&lt;/code&gt; 或 &lt;code&gt;undefined&lt;/code&gt; 。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="node" scheme="http://yoursite.com/categories/node/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>node-path</title>
     <link href="http://yoursite.com/2019/03/05/node-path/"/>
     <id>http://yoursite.com/2019/03/05/node-path/</id>
     <published>2019-03-05T09:07:20.000Z</published>
-    <updated>2019-03-05T10:43:29.461Z</updated>
+    <updated>2019-03-06T08:44:26.135Z</updated>
     
     <content type="html"><![CDATA[<h2 id="path"><a href="#path" class="headerlink" title="path"></a>path</h2><p><code>path</code> 模块提供了一些用于处理文件路径和目录路径的工具函数。使用之前要通过以下方式调用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div></pre></td></tr></table></figure>
@@ -34,15 +82,16 @@
 <li>path.format(pathObject) —— 将一个对象转换为一个路径字符串</li>
 <li>path.isAbsolute(path) —— 检测 <code>path</code> 是否是一个绝对路径</li>
 <li>path.join([…paths]) —— 组合路径</li>
-<li>path.normalize(path)</li>
-<li>path.parse(path)</li>
-<li>path.posix</li>
-<li>path.relative(from, to)</li>
-<li>path.resolve([…paths])</li>
-<li>path.sep</li>
-<li>path.toNamespacedPath(path)</li>
-<li>path.win32</li>
+<li>path.normalize(path) ——  规范化给定的 <code>path</code></li>
+<li>path.parse(path) —— 将一个路径字符串转换为一个对象</li>
+<li>path.posix —— 提供对特定于 <code>POSIX</code> 的 <code>path</code> 方法的实现</li>
+<li>path.relative(from, to) —— 相对路径</li>
+<li>path.resolve([…paths]) —— 绝对路径</li>
+<li>path.sep —— 提供了平台特定的路径片段分隔符</li>
+<li>path.toNamespacedPath(path) —— 仅在 <code>Windows</code> 系统上，返回给定 <code>path</code> 的等效名称空间前缀路径</li>
+<li>path.win32 —— 提供对特定于 <code>Windows</code> 的 <code>path</code> 方法的实现</li>
 </ul>
+<a id="more"></a>
 <h2 id="1-Windows-与-POSIX"><a href="#1-Windows-与-POSIX" class="headerlink" title="1. Windows 与 POSIX"></a>1. Windows 与 POSIX</h2><p><code>path</code> 模块的默认操作会根据 <code>Node.js</code> 应用程序的操作系统的不同而变化。所以：</p>
 <p>当运行在 <code>Windows</code> 系统上时， <code>path</code> 模块会认为使用的是 <code>Windows</code> 风格的路径。</p>
 <p>当运行在 <code>POSIX</code> 系统上时， <code>path</code> 模块会认为使用的是 <code>POSIX</code> 风格的路径。</p>
@@ -80,8 +129,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.dirname(<span class="string">'/eiiizong/jd.html'</span>);</div><div class="line"><span class="comment">// 返回：'/eiiizong'</span></div></pre></td></tr></table></figure>
 <p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
 <h2 id="5-path-extname-path-——-返回文件的扩展名"><a href="#5-path-extname-path-——-返回文件的扩展名" class="headerlink" title="5. path.extname(path) —— 返回文件的扩展名"></a>5. path.extname(path) —— 返回文件的扩展名</h2><ul>
-<li><code>path</code> <string></string></li>
-<li><strong>返回</strong>： <string></string></li>
+<li><code>path</code> <code>&lt;string&gt;</code></li>
+<li><strong>返回</strong>： <code>&lt;string&gt;</code></li>
 </ul>
 <p><code>path.extname()</code> 方法返回 <code>path</code> 的扩展名，即从 <code>path</code> 的最后一部分中的最后一个 <code>.</code>（句号）字符到字符串结束。 <strong>如果 <code>path</code> 的最后一部分没有 <code>.</code> 或 <code>path</code> 的文件名的第一个字符是 <code>.</code>，则返回一个空字符串。</strong></p>
 <p>例子：</p>
@@ -99,6 +148,14 @@
 <li><strong>返回</strong>: <code>&lt;string&gt;</code></li>
 </ul>
 <p><code>path.format()</code> 方法会从一个对象返回一个路径字符串。 与 <code>path.parse()</code> 相反。</p>
+<p>当为 <code>pathObject</code> 提供属性时，注意以下组合， 其中一些属性优先于另一些属性：</p>
+<ul>
+<li>如果提供了 <code>pathObject.dir</code> ，则会忽略 <code>pathObject.root</code>。</li>
+<li>如果提供了 <code>pathObject.base</code> ，则会忽略 <code>pathObject.ext</code> 和 <code>pathObject.name</code>。</li>
+</ul>
+<p>例如： </p>
+<p>在 <code>windows</code> 上：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">path.format(&#123;</div><div class="line">	root: <span class="string">'/eiiizong'</span>,</div><div class="line">	dir: <span class="string">'/jd/520'</span>,</div><div class="line">	name: <span class="string">'you'</span>,</div><div class="line">	ext: <span class="string">'.html'</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// 返回： '/jd/520\\you.html'</span></div><div class="line"></div><div class="line">path.format(&#123;</div><div class="line">	root: <span class="string">'/eiiizong'</span>,</div><div class="line">	dir: <span class="string">'/jd/520'</span>,</div><div class="line">	base: <span class="string">'test.txt'</span>,</div><div class="line">	name: <span class="string">'you'</span>,</div><div class="line">	ext: <span class="string">'.html'</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// 返回： '/jd/520\\test.txt'</span></div></pre></td></tr></table></figure>
 <h2 id="7-path-isAbsolute-path-——-检测-path-是否为一个绝对路径"><a href="#7-path-isAbsolute-path-——-检测-path-是否为一个绝对路径" class="headerlink" title="7. path.isAbsolute(path) —— 检测 path 是否为一个绝对路径"></a>7. path.isAbsolute(path) —— 检测 path 是否为一个绝对路径</h2><ul>
 <li><code>path</code>  <code>&lt;string&gt;</code></li>
 <li><strong>返回</strong>： <code>&lt;boolean&gt;</code></li>
@@ -148,9 +205,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">path.parse(<span class="string">'/eiiizong/jd/520.html'</span>);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">返回： </span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">&#123; </span></div><div class="line"><span class="comment">  root: '/',</span></div><div class="line"><span class="comment">  dir: '/eiiizong/jd',</span></div><div class="line"><span class="comment">  base: '520.html',</span></div><div class="line"><span class="comment">  ext: '.html',</span></div><div class="line"><span class="comment">  name: '520' </span></div><div class="line"><span class="comment">&#125;</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
 <p>如果 <code>path</code> 不是一个字符串，则抛出 <code>TypeError</code>。</p>
 <h2 id="11-path-posix"><a href="#11-path-posix" class="headerlink" title="11. path.posix"></a>11. path.posix</h2><ul>
-<li><object>
-
-</object></li>
+<li><code>&lt;Object&gt;</code></li>
 </ul>
 <p><code>path.posix</code> 属性提供对 <code>path</code> 方法的 <code>POSIX</code> 特定实现的访问。</p>
 <h2 id="12-path-relative-from-to-——-返回从-from-到-to-的相对路径"><a href="#12-path-relative-from-to-——-返回从-from-到-to-的相对路径" class="headerlink" title="12. path.relative(from, to) —— 返回从 from 到 to 的相对路径"></a>12. path.relative(from, to) —— 返回从 from 到 to 的相对路径</h2><ul>
@@ -158,22 +213,45 @@
 <li><code>to</code> <code>&lt;string&gt;</code></li>
 <li><strong>返回</strong>：<code>&lt;string&gt;</code></li>
 </ul>
-<h2 id="13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径"><a href="#13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径" class="headerlink" title="13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径"></a>13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径</h2><h2 id="14-path-sep-——-提供了平台特定的路径片段分隔符"><a href="#14-path-sep-——-提供了平台特定的路径片段分隔符" class="headerlink" title="14. path.sep —— 提供了平台特定的路径片段分隔符"></a>14. path.sep —— 提供了平台特定的路径片段分隔符</h2><ul>
-<li><string>
-
-</string></li>
+<p><code>path.relative()</code> 方法根据当前工作目录返回 <code>from</code> 到 <code>to</code> 的相对路径。（即从 <code>form</code> 路径开始要经历怎样的路径才能达到 <code>to</code> 路径）</p>
+<p>如果 <code>from</code> 和 <code>to</code> 各自解析到相同的路径（分别调用 <code>path.resolve()</code> 之后），则返回零长度的字符串。</p>
+<p>如果将零长度的字符串传入 <code>form</code> 或 <code>to</code> ，则使用当前工作目录代替该零长度字符串。</p>
+<p>例如： </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">path.relative(<span class="string">'c:/aaa/jd/test.html'</span>, <span class="string">'C:/aaa/test2.html'</span>);</div><div class="line"><span class="comment">// 返回： '..\\..\\test2.html'</span></div><div class="line"></div><div class="line">path.relative(<span class="string">'/aaa/jd/test.html'</span>, <span class="string">'/aaa/jd/test.html'</span>);</div><div class="line"><span class="comment">// 返回： ''</span></div><div class="line"></div><div class="line"><span class="comment">// 当前工作目录: 'C:\Users\eiiizong&gt;'</span></div><div class="line">path.relative(<span class="string">'/aaa/jd/test.html'</span>, <span class="string">''</span>);</div><div class="line"><span class="comment">// 返回： '..\\..\\..\\Users\\eiiizong'</span></div></pre></td></tr></table></figure>
+<h2 id="13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径"><a href="#13-path-resolve-…paths-——-把一个路径或路径片段的序列解析为一个绝对路径" class="headerlink" title="13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径"></a>13. path.resolve([…paths]) —— 把一个路径或路径片段的序列解析为一个绝对路径</h2><ul>
+<li><code>...path</code> <code>&lt;string&gt;</code> 路径或路径片段的序列</li>
+<li><strong>返回</strong>：<code>&lt;string&gt;</code></li>
 </ul>
-<p>提供了平台特定的路径片段分隔符：</p>
+<p><code>path.resolve()</code> 方法将路径或路径片段的序列解析为绝对路径。</p>
+<p>给定的路径序列从右到左进行处理，每个后续的 <code>path</code> 前置，直到构造出一个绝对路径。</p>
+<p>如果在处理完所有给定的 <code>path</code> 片段之后还未生成绝对路径，则再加上当前工作目录。</p>
+<p>生成的路径已规范化，并且除非将路径解析为根目录，否则将删除尾部斜杠。</p>
+<p>零长度的 <code>path</code> 片段会被忽略。</p>
+<p>如果没有传入 <code>path</code> 片段，则 <code>path.resolve()</code> 将返回当前工作目录的绝对路径。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 当前工作目录: 'C:\Users\eiiizong&gt;'</span></div><div class="line"></div><div class="line">path.resolve(<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'test.html'</span>);</div><div class="line"><span class="comment">// 返回： 'C:\\Users\\eiiizong\\aaa\\bbb\\test.html'</span></div><div class="line"></div><div class="line">path.resolve(<span class="string">'//aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'test.html'</span>);</div><div class="line"><span class="comment">// 返回： 'C:\\aaa\\bbb\\test.html'</span></div><div class="line"></div><div class="line">path.resolve(<span class="string">'aaa'</span>, <span class="string">''</span>, <span class="string">'test.html'</span>);</div><div class="line"><span class="comment">// 返回： 'C:\\Users\\eiiizong\\aaa\\test.html'</span></div><div class="line"></div><div class="line">path.resolve(<span class="string">'/aaa'</span>, <span class="string">'/bbb'</span>, <span class="string">'test.html'</span>);</div><div class="line"><span class="comment">// 返回： 'C:\\bbb\\test.html'</span></div></pre></td></tr></table></figure>
+<h2 id="14-path-sep-——-提供了平台特定的路径片段分隔符"><a href="#14-path-sep-——-提供了平台特定的路径片段分隔符" class="headerlink" title="14. path.sep —— 提供了平台特定的路径片段分隔符"></a>14. path.sep —— 提供了平台特定的路径片段分隔符</h2><ul>
+<li><code>&lt;string&gt;</code></li>
+</ul>
+<p><code>path.sep</code> 提供了平台特定的路径片段分隔符。</p>
 <ul>
 <li>Windows 上是 <code>\</code></li>
 <li>POSIX 上是 <code>/</code></li>
 </ul>
-<p>例如，在 POSIX 上：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'foo/bar/baz'</span>.split(path.sep));<span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
-<p>在 Windows 上：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'foo\\bar\\baz'</span>.split(path.sep));<span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
+<p>例如:</p>
+<p>在 <code>POSIX</code> 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'foo/bar/baz'</span>.split(path.sep);</div><div class="line"><span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
+<p>在 <code>Windows</code> 上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'foo\\bar\\baz'</span>.split(path.sep);</div><div class="line"><span class="comment">// 返回: ['foo', 'bar', 'baz']</span></div></pre></td></tr></table></figure>
 <p><strong>注意</strong>：在 Windows 上，斜杠字符（<code>/</code>）和反斜杠字符（<code>\</code>）都可作为路径分隔符； 但 <code>path</code> 的方法只添加反斜杠（<code>\</code>）(<strong><code>\\</code> 中的第一个  <code>\</code> 是相当于转义符</strong>)。</p>
-<h2 id="15-path-toNamespacedPath-path"><a href="#15-path-toNamespacedPath-path" class="headerlink" title="15. path.toNamespacedPath(path)"></a>15. path.toNamespacedPath(path)</h2><p>仅在 <code>Windows</code> 系统上，返回给定 <code>path</code> 的等效名称空间前缀路径。</p>
+<h2 id="15-path-toNamespacedPath-path"><a href="#15-path-toNamespacedPath-path" class="headerlink" title="15. path.toNamespacedPath(path)"></a>15. path.toNamespacedPath(path)</h2><ul>
+<li><code>path</code> <code>&lt;string&gt;</code> </li>
+<li><strong>返回</strong>：<code>&lt;string&gt;</code></li>
+</ul>
+<p>仅在 <code>Windows</code> 系统上，返回给定 <code>path</code> 的等效名称空间前缀路径。</p>
+<p>如果 <code>path</code> 不是字符串，则将返回 <code>path</code> 而不进行修改。</p>
+<p>此方法仅在 <code>Windows</code> 系统上有意义。 在 <code>POSIX</code> 系统上，该方法不可操作，并且始终返回 <code>path</code> 而不进行修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.toNamespacedPath(<span class="string">'c:/eiizong/'</span>);</div><div class="line"><span class="comment">// 返回： '\\\\?\\c:\\eiizong'</span></div></pre></td></tr></table></figure>
 <h2 id="15-path-win32"><a href="#15-path-win32" class="headerlink" title="15. path.win32"></a>15. path.win32</h2><ul>
 <li><code>&lt;object&gt;</code></li>
 </ul>
@@ -183,6 +261,26 @@
     <summary type="html">
     
       &lt;h2 id=&quot;path&quot;&gt;&lt;a href=&quot;#path&quot; class=&quot;headerlink&quot; title=&quot;path&quot;&gt;&lt;/a&gt;path&lt;/h2&gt;&lt;p&gt;&lt;code&gt;path&lt;/code&gt; 模块提供了一些用于处理文件路径和目录路径的工具函数。使用之前要通过以下方式调用：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; path = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;path&#39;&lt;/span&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以下就是 &lt;code&gt;path&lt;/code&gt; 提供的一些功能函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 与 POSIX&lt;/li&gt;
+&lt;li&gt;path.basename(path[, ext]) —— 获取文件名&lt;/li&gt;
+&lt;li&gt;path.delimiter            ——　获取路径分隔符&lt;/li&gt;
+&lt;li&gt;path.dirname(path) —— 获取文件所在的目录名称&lt;/li&gt;
+&lt;li&gt;path.extname(path) —— 返回文件的扩展名&lt;/li&gt;
+&lt;li&gt;path.format(pathObject) —— 将一个对象转换为一个路径字符串&lt;/li&gt;
+&lt;li&gt;path.isAbsolute(path) —— 检测 &lt;code&gt;path&lt;/code&gt; 是否是一个绝对路径&lt;/li&gt;
+&lt;li&gt;path.join([…paths]) —— 组合路径&lt;/li&gt;
+&lt;li&gt;path.normalize(path) ——  规范化给定的 &lt;code&gt;path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;path.parse(path) —— 将一个路径字符串转换为一个对象&lt;/li&gt;
+&lt;li&gt;path.posix —— 提供对特定于 &lt;code&gt;POSIX&lt;/code&gt; 的 &lt;code&gt;path&lt;/code&gt; 方法的实现&lt;/li&gt;
+&lt;li&gt;path.relative(from, to) —— 相对路径&lt;/li&gt;
+&lt;li&gt;path.resolve([…paths]) —— 绝对路径&lt;/li&gt;
+&lt;li&gt;path.sep —— 提供了平台特定的路径片段分隔符&lt;/li&gt;
+&lt;li&gt;path.toNamespacedPath(path) —— 仅在 &lt;code&gt;Windows&lt;/code&gt; 系统上，返回给定 &lt;code&gt;path&lt;/code&gt; 的等效名称空间前缀路径&lt;/li&gt;
+&lt;li&gt;path.win32 —— 提供对特定于 &lt;code&gt;Windows&lt;/code&gt; 的 &lt;code&gt;path&lt;/code&gt; 方法的实现&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     

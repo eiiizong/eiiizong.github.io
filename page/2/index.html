@@ -333,6 +333,1315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/27/JS创建对象的几种方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeng Xiaoming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oupo5zwub.bkt.clouddn.com/blog/170816/10IA3EL4IF.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eiiizong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/27/JS创建对象的几种方式/" itemprop="url">JS创建对象的几种方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-27T13:29:48+08:00">
+                2017-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/09/27/JS创建对象的几种方式/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/09/27/JS创建对象的几种方式/" class="cy_cmt_count" data-xid="2017/09/27/JS创建对象的几种方式/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,832 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>虽然<code>Object构造函数</code>或<code>对象字面量</code>都可以用创建<strong>单个</strong>对象。 但是这两个方式都有明显的缺点：<strong>使用同一个接口创建多个对象时，会产生很多的重复的代码。</strong>所以引入了 <code>工厂模式</code> 解决这种问题。</p>
+<h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1 工厂模式"></a>1 工厂模式</h2><p>工厂模式是一种设计模式，这种模式抽象了创建具体对象的过程。因为ECMAScript中无法创建<strong>类</strong>，所以开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。如下例所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPeople</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">        <span class="comment">//利用Object构造函数创建一个实例</span></div><div class="line">	<span class="keyword">var</span> People = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">	<span class="comment">//定义实例的属性和方法</span></div><div class="line">	<span class="comment">//姓名——属性</span></div><div class="line">	People.name = name;	</div><div class="line">	<span class="comment">//年龄——属性</span></div><div class="line">	People.age = age;</div><div class="line">	<span class="comment">//显示该实例的一些信息——方法</span></div><div class="line">	People.showInfo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> showInfo = <span class="string">'Hello! '</span>+<span class="keyword">this</span>.name+<span class="string">' 你已经 '</span>+<span class="keyword">this</span>.age+<span class="string">' 岁了！'</span>;</div><div class="line">		<span class="comment">//如下创建一个people1实例对象，然后调用showInfo方法</span></div><div class="line">		<span class="comment">//警告弹出显示：Hello! Eiiizong 你已经 22 岁了！</span></div><div class="line">		alert(showInfo); </div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//返回该实例对象，其中包含了上面所定义的一些的属性和方法</span></div><div class="line">	<span class="keyword">return</span> People;</div><div class="line">&#125;</div><div class="line"><span class="comment">//利用createPeople函数创建一个实例对象eiiizong</span></div><div class="line"><span class="keyword">var</span> people1 = createPeople(<span class="string">'Eiiizong'</span>,<span class="number">22</span>);</div><div class="line">people1.showInfo();</div></pre></td></tr></table></figure>
+<p>函数 createPeople（）能够根据接收的参数来构建一个包含所有必要信息的people对象。可以无数次的调用这个函数，而每次它都返回一个包含两个属性和一个方法的对象。</p>
+<p>在上面的代码中有这样一段代码 <code>console.log(this);</code>，而这个<strong>this</strong>在控制台输出的是什么呢？输出如下：</p>
+<pre><code>{
+    name: &quot;Eiiizong&quot;, 
+    age: 22, 
+    showInfo: ƒ
+}
+</code></pre><p>所以当前的 <strong>this</strong> 指向的是对象<strong> people1</strong>。即和 <code>console.log（people1）</code> 的输出结果是一样的。</p>
+<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别问题（即怎么知道一个对象的类型？）。所以又出现了以下新模式。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/27/JS创建对象的几种方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+    
+
+    
+
+    
+	
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/jQuery选择器一览表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeng Xiaoming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oupo5zwub.bkt.clouddn.com/blog/170816/10IA3EL4IF.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eiiizong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/jQuery选择器一览表/" itemprop="url">jQuery 选择器一览表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T13:42:11+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/28/jQuery选择器一览表/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/08/28/jQuery选择器一览表/" class="cy_cmt_count" data-xid="2017/08/28/jQuery选择器一览表/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,089 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JQuery-选择器一览表"><a href="#JQuery-选择器一览表" class="headerlink" title="JQuery 选择器一览表:"></a>JQuery 选择器一览表:</h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>#id</code></td>
+<td style="text-align:center">根据给定的 <strong>ID</strong> 匹配一个元素</td>
+<td style="text-align:center">单个元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>element</code></td>
+<td style="text-align:center">根据给定的 <strong>元素名</strong> 匹配所有元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>.class</code></td>
+<td style="text-align:center">根据给定的 <strong>类</strong> 匹配元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">匹配 <strong>所有</strong> 元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>selector1, selectorN</code></td>
+<td style="text-align:center">将 <strong>每一个选择器匹配到的元素合并</strong> 后一起返回</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h2 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ancestor descendant</code></td>
+<td style="text-align:center">根据 <strong>祖先元素</strong> 匹配所有的 <strong>后代元素</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>parent &gt; child</code></td>
+<td style="text-align:center">根据 <strong>父元素</strong> 匹配所有的 <strong>子元素</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>.prev + next</code></td>
+<td style="text-align:center">匹配所有紧接在 <strong>prev 元素</strong>后的 <strong>相邻元素</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>prev ~ siblings</code></td>
+<td style="text-align:center">匹配 <strong>prev 元素</strong> 之后的所有 <strong>兄弟元素</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2><h3 id="简单过滤选择器"><a href="#简单过滤选择器" class="headerlink" title="简单过滤选择器"></a>简单过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>first() 或 :first</code></td>
+<td style="text-align:center">获取 <strong>第一个</strong> 元素</td>
+<td style="text-align:center">单个元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>last() 或 :last</code></td>
+<td style="text-align:center">获取 <strong>最后一个</strong> 元素</td>
+<td style="text-align:center">单个元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:not(selector)</code></td>
+<td style="text-align:center">获取 <strong>除给定选择器外</strong> 的所有元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:even</code></td>
+<td style="text-align:center">获取所有索引值为 <strong>偶数</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:odd</code></td>
+<td style="text-align:center">获取所有索引值为 <strong>奇数</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:eq(index)</code></td>
+<td style="text-align:center">获取 <strong>指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">单个元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:gt(index)</code></td>
+<td style="text-align:center">获取所有 <strong>大于指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:lt(index)</code></td>
+<td style="text-align:center">获取所有 <strong>小于指定索引值</strong> 的元素，索引号从 <strong>0</strong> 开始</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:header</code></td>
+<td style="text-align:center">获取所有 <strong>标题类型</strong> 的元素，如 <code>h1</code>、<code>h2</code> …</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:animated</code></td>
+<td style="text-align:center">获取正在 <strong>执行动画效果</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内容过滤选择器"><a href="#内容过滤选择器" class="headerlink" title="内容过滤选择器"></a>内容过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:contains(text)</code></td>
+<td style="text-align:center">获取 <strong>包含给定文本</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:empty</code></td>
+<td style="text-align:center">获取所有 <strong>不包含子元素或文本</strong> 的空元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:has(selector)</code></td>
+<td style="text-align:center">获取 <strong>含有选择器所匹配的元素</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:parent</code></td>
+<td style="text-align:center">获取 <strong>含有子元素或文本</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="可见性过滤选择器"><a href="#可见性过滤选择器" class="headerlink" title="可见性过滤选择器"></a>可见性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:hidden</code></td>
+<td style="text-align:center">获取所有 <strong>不可见元素或者 <code>type</code> 为 <code>hidden</code></strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:visible</code></td>
+<td style="text-align:center">获取所有的 <strong>可见</strong> 元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性过滤选择器"><a href="#属性过滤选择器" class="headerlink" title="属性过滤选择器"></a>属性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>[attribute]</code></td>
+<td style="text-align:center">获取 <strong>包含给定属性</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[attribute=value]</code></td>
+<td style="text-align:center">获取 <strong>等于给定的属性是某个特定值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[attribute!=value]</code></td>
+<td style="text-align:center">获取 <strong>不等于给的定属性是某个特定值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[attribute^=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以某些值开始</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[attribute$=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以某些值结尾</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[attribute*=value]</code></td>
+<td style="text-align:center">获取 <strong>给定的属性是以包含某些值</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[selector1][selector2][selectorN]</code></td>
+<td style="text-align:center">获取 <strong>满足多个条件的复合属性</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="子元素过滤选择器"><a href="#子元素过滤选择器" class="headerlink" title="子元素过滤选择器"></a>子元素过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:nth-child(eq 或 even 或 odd 或 index)</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的特定位置</strong> 元素，索引号从 <code>1</code> 开始</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:fisrt-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的第一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:last-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的最后一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:only-child</code></td>
+<td style="text-align:center">获取 <strong>每个父元素下的仅有一个</strong> 子元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单对象属性过滤选择器"><a href="#表单对象属性过滤选择器" class="headerlink" title="表单对象属性过滤选择器"></a>表单对象属性过滤选择器</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:enabled</code></td>
+<td style="text-align:center">获取表单中所有属性为 <strong>可用</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:disabled</code></td>
+<td style="text-align:center">获取表单中所有属性为 <strong>不可用</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:checked</code></td>
+<td style="text-align:center">获取表单中所有 <strong>被选中</strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:selected</code></td>
+<td style="text-align:center">获取表单中所有 <strong>被选中 <code>option</code></strong> 的元素</td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">选择器</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>:input</code></td>
+<td style="text-align:center">获取所有 <strong><code>input</code>、<code>textarea</code>、<code>select</code></strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:password</code></td>
+<td style="text-align:center">获取所有 <strong>密码框</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:radio</code></td>
+<td style="text-align:center">获取所有 <strong>单选按钮</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:checkbox</code></td>
+<td style="text-align:center">获取所有 <strong>复选框</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:submit</code></td>
+<td style="text-align:center">获取所有 <strong>提交按钮</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:image</code></td>
+<td style="text-align:center">获取所有 <strong>图像域</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:reset</code></td>
+<td style="text-align:center">获取所有 <strong>重置按钮</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:button</code></td>
+<td style="text-align:center">获取所有 <strong>按钮</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:file</code></td>
+<td style="text-align:center">获取所有 <strong>文件域</strong></td>
+<td style="text-align:center">元素集合</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+    
+
+    
+
+    
+	
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/表格变色/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeng Xiaoming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oupo5zwub.bkt.clouddn.com/blog/170816/10IA3EL4IF.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eiiizong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/25/表格变色/" itemprop="url">表格变色</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:02:15+08:00">
+                2017-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/25/表格变色/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/08/25/表格变色/" class="cy_cmt_count" data-xid="2017/08/25/表格变色/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,044 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-表格隔行变色"><a href="#1-表格隔行变色" class="headerlink" title="1 表格隔行变色"></a>1 表格隔行变色</h1><p>文档加载完毕，表格的就实现了隔行变色。其效果如下图所示：</p>
+<p><img src="http://oupo5zwub.bkt.clouddn.com/blog/170825/3kk95cABaF.png?imageslim" alt="mark"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/25/表格变色/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+    
+
+    
+
+    
+	
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/jQuery小示例及讲解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeng Xiaoming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oupo5zwub.bkt.clouddn.com/blog/170816/10IA3EL4IF.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eiiizong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/24/jQuery小示例及讲解/" itemprop="url">jQuery 小示例及讲解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T17:32:18+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/24/jQuery小示例及讲解/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/08/24/jQuery小示例及讲解/" class="cy_cmt_count" data-xid="2017/08/24/jQuery小示例及讲解/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  877 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-第一个简单的JQuery程序"><a href="#1-第一个简单的JQuery程序" class="headerlink" title="1 第一个简单的JQuery程序"></a>1 第一个简单的JQuery程序</h1><p>其代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">		&lt;title&gt;第一个简单的JQuery程序&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">		&lt;script src="script/</span>jquery<span class="number">-3.2</span><span class="number">.1</span>.js<span class="string">"&gt;&lt;/script&gt;</span></div><div class="line"><span class="string">		&lt;script&gt;</span></div><div class="line"><span class="string">			$(document).ready(function()&#123;</span></div><div class="line"><span class="string">				alert("</span>Hello,welcome to JQuery world!<span class="string">")</span></div><div class="line"><span class="string">			&#125;)</span></div><div class="line"><span class="string">		&lt;/script&gt;</span></div><div class="line"><span class="string">	&lt;/head&gt;</span></div><div class="line"><span class="string">	&lt;body&gt;</span></div><div class="line"><span class="string">	&lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/24/jQuery小示例及讲解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+    
+
+    
+
+    
+	
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/21/ECMAScript基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeng Xiaoming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oupo5zwub.bkt.clouddn.com/blog/170816/10IA3EL4IF.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eiiizong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/21/ECMAScript基本概念/" itemprop="url">ECMAScript 基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T18:20:07+08:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/21/ECMAScript基本概念/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/08/21/ECMAScript基本概念/" class="cy_cmt_count" data-xid="2017/08/21/ECMAScript基本概念/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10,203 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  38 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-语法"><a href="#1-语法" class="headerlink" title="1 语法"></a>1 语法</h1><h2 id="1-1-区分大小写"><a href="#1-1-区分大小写" class="headerlink" title="1.1 区分大小写"></a>1.1 区分大小写</h2><p>  ECMAScript中的一切（包括 <strong>变量</strong> ，<strong>函数名</strong> ，<strong>操作符</strong> ）都区分大小写。即意味着test与Test、tEst分别表示不同的变量。</p>
+<h2 id="1-2-标识符"><a href="#1-2-标识符" class="headerlink" title="1.2 标识符"></a>1.2 标识符</h2><p>所谓标识符就是指变量，函数，属性的名字，或者函数的参数。<br>标识符按照以下规则组合：</p>
+<ul>
+<li>1、第一个字符必须是字母，下划线（_）或一个美元符号（$）</li>
+<li>2、其他字符可以是字母，下划线，美元符号或者数字</li>
+</ul>
+<p><strong>注意</strong>：推荐使用驼峰大小写格式   <strong>例如</strong>: myCar</p>
+<h2 id="1-3-注释"><a href="#1-3-注释" class="headerlink" title="1.3 注释"></a>1.3 注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//      单行注释</div><div class="line">/* */   多行注释</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/21/ECMAScript基本概念/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+    
+
+    
+
+    
+	
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/16/CSS3-动画的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -562,7 +1871,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -573,7 +1882,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -584,7 +1893,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -676,7 +1985,7 @@
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
     <span title="Site words total count">
-      29.3k
+      31.9k
     </span>
   
 </div>
